@@ -48,11 +48,11 @@ jobs:
       # En Mac Apple Silicon hay que agregar --platform linux/amd64.
       - name: Build and push Docker image
         env:
-          ICR_REGION: ${{ secrets.ICR_REGION }}         # ej: us-south → us.icr.io
-          ICR_NAMESPACE: ${{ secrets.ICR_NAMESPACE }}   # ej: ce-latam
+          ICR_NAMESPACE: ${{ secrets.ICR_NAMESPACE }}   # ce-latam
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          IMAGE="${ICR_REGION}.icr.io/${ICR_NAMESPACE}/ce-latam-portfolio:${IMAGE_TAG}"
+          # ICR us-south siempre usa us.icr.io como hostname
+          IMAGE="us.icr.io/${ICR_NAMESPACE}/ce-latam-portfolio:${IMAGE_TAG}"
           docker build -f deploy/Dockerfile -t "$IMAGE" .
           docker push "$IMAGE"
           echo "IMAGE=$IMAGE" >> $GITHUB_ENV
