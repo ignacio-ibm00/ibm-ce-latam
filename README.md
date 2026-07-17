@@ -4,7 +4,7 @@
 > Centraliza los assets de IA (pilotos, MVPs y workshops) desarrollados para clientes de la región.
 
 **Equipo:** Ignacio Ayerbe · Martina Pérez  
-**Portal de documentación:** [ver en GitHub Pages](../../) *(disponible una vez deployado)*
+**Portal de documentación:** [ver el portal](https://ce-latam-portfolio.2cf01a0x2smr.us-south.codeengine.appdomain.cloud) *(disponible una vez deployado)*
 
 ---
 
