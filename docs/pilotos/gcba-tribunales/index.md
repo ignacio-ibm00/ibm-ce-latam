@@ -94,4 +94,4 @@ flowchart TD
     - `Información del caso.docx` — descripción del caso de uso y requerimientos
     - `expediente ejemplo.pdf` — documento de ejemplo para pruebas (anonimizado)
 
-    → Ver guía técnica completa en [`guia-tecnica.md`](../../pilotos/gcba-tribunales/guia-tecnica.md)
+    → Guía técnica completa disponible en el repositorio: `pilotos/gcba-tribunales/guia-tecnica.md`

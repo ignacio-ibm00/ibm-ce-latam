@@ -94,4 +94,4 @@ flowchart TD
     **Herramientas incluidas (tools/):**
     `agendarTurno`, `buscarPrestadorPorNombre`, `buscarPrestadoresCartilla`, `cancelarTurno`, `getCartillaGrupoFamiliar`, `getCentrosPropios`, `getCoberturasPrestacionesPrestador`, `getEspecialidadesTurnos`, `getPrestaciones`, `getServicios`, `getSubespecialidades`, `getTotalizadores`, `getTurnosDisponibles`, `getTurnosProgramados`, `transcribirAudioWhatsapp`, `validarContrato`, `emitConversationEnvelope`
 
-    → Ver guía técnica completa en [`guia-tecnica.md`](../../pilotos/swiss-medical/guia-tecnica.md)
+    → Guía técnica completa disponible en el repositorio: `pilotos/swiss-medical/guia-tecnica.md`

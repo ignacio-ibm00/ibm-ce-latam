@@ -102,4 +102,4 @@ flowchart TD
     python consumer_to_cos.py   # Consume y sube a IBM COS como Parquet
     ```
 
-    → Ver guía técnica completa en [`guia-tecnica.md`](../../pilotos/telecom/guia-tecnica.md)
+    → Guía técnica completa disponible en el repositorio: `pilotos/telecom/guia-tecnica.md`

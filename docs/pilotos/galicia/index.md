@@ -98,4 +98,4 @@ flowchart TD
     | Consulta de Tickets (Elastic Search) | `Consulta_de_Tickets_Elastic_Search_3349Hj.yaml` |
     | Creación de Tickets (ServiceNow) | `Creacion_de_tickets_ServiceNow_97899l.yaml` |
 
-    → Ver guía técnica completa en [`guia-tecnica.md`](../../pilotos/galicia/guia-tecnica.md)
+    → Guía técnica completa disponible en el repositorio: `pilotos/galicia/guia-tecnica.md`

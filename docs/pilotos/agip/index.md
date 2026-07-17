@@ -119,4 +119,4 @@ flowchart TD
     | `20301112220` | Carlos López |
     | `27289991110` | Ana Díaz |
 
-    → Ver guía técnica completa en [`guia-tecnica.md`](../../pilotos/agip/guia-tecnica.md)
+    → Guía técnica completa disponible en el repositorio: `pilotos/agip/guia-tecnica.md`
