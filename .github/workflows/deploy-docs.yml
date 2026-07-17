@@ -40,7 +40,7 @@ jobs:
           ICR_REGION: ${{ secrets.ICR_REGION }}   # ej: us-south
         run: |
           ibmcloud login --apikey "$IBMCLOUD_APIKEY" -r "$ICR_REGION"
-          ibmcloud target -g Default
+          ibmcloud target -g Delitos-Economicos
           ibmcloud cr login
 
       # ── Build y push de la imagen Docker ──────────────────────────────────
