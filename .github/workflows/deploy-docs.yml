@@ -1,0 +1,97 @@
+name: Deploy docs to IBM Code Engine
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ── Build del sitio MkDocs ─────────────────────────────────────────────
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install MkDocs dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build MkDocs site (validación)
+        run: mkdocs build --strict
+
+      # ── IBM Cloud CLI ──────────────────────────────────────────────────────
+      - name: Install IBM Cloud CLI and plugins
+        run: |
+          curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+          ibmcloud plugin install code-engine -f
+          ibmcloud plugin install container-registry -f
+
+      - name: Login to IBM Cloud
+        env:
+          IBMCLOUD_APIKEY: ${{ secrets.IBMCLOUD_APIKEY }}
+          ICR_REGION: ${{ secrets.ICR_REGION }}   # ej: us-south
+        run: |
+          ibmcloud login --apikey "$IBMCLOUD_APIKEY" -r "$ICR_REGION"
+          ibmcloud target -g Default
+          ibmcloud cr login
+
+      # ── Build y push de la imagen Docker ──────────────────────────────────
+      # Nota: ubuntu-latest corre en amd64, --platform no es necesario aquí.
+      # En Mac Apple Silicon hay que agregar --platform linux/amd64.
+      - name: Build and push Docker image
+        env:
+          ICR_REGION: ${{ secrets.ICR_REGION }}         # ej: us-south → us.icr.io
+          ICR_NAMESPACE: ${{ secrets.ICR_NAMESPACE }}   # ej: ce-latam
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          IMAGE="${ICR_REGION}.icr.io/${ICR_NAMESPACE}/ce-latam-portfolio:${IMAGE_TAG}"
+          docker build -f deploy/Dockerfile -t "$IMAGE" .
+          docker push "$IMAGE"
+          echo "IMAGE=$IMAGE" >> $GITHUB_ENV
+
+      # ── Deploy en Code Engine ──────────────────────────────────────────────
+      - name: Deploy to IBM Code Engine
+        env:
+          CE_PROJECT: ${{ secrets.CE_PROJECT }}     # ej: ce-latam-docs
+          CE_APP_NAME: ${{ secrets.CE_APP_NAME }}   # ej: ce-latam-portfolio
+          IBMCLOUD_APIKEY: ${{ secrets.IBMCLOUD_APIKEY }}
+        run: |
+          ibmcloud ce project select --name "$CE_PROJECT"
+
+          # Crear registry secret si no existe (primera vez)
+          if ! ibmcloud ce registry get --name icr-secret > /dev/null 2>&1; then
+            ibmcloud ce registry create \
+              --name icr-secret \
+              --server us.icr.io \
+              --username iamapikey \
+              --password "$IBMCLOUD_APIKEY"
+          fi
+
+          # Crear la app si no existe, actualizar si ya existe
+          if ibmcloud ce app get --name "$CE_APP_NAME" > /dev/null 2>&1; then
+            echo "Actualizando app existente..."
+            ibmcloud ce app update \
+              --name "$CE_APP_NAME" \
+              --image "$IMAGE"
+          else
+            echo "Creando nueva app..."
+            ibmcloud ce app create \
+              --name "$CE_APP_NAME" \
+              --image "$IMAGE" \
+              --registry-secret icr-secret \
+              --port 8080 \
+              --min-scale 0 \
+              --max-scale 2
+          fi
+
+          echo ""
+          echo "✅ Deploy completado:"
+          ibmcloud ce app get --name "$CE_APP_NAME" | grep -E "URL|Status"

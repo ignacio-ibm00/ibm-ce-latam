@@ -1,0 +1,52 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+__MACOSX/
+
+# Videos — usar links a Box en one-pager.md
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Credenciales y variables de entorno
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+secrets/
+
+# Datos sensibles de clientes
+*_real.*
+*-produccion.*
+usuarios_data.xlsx
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# MkDocs build output
+site/
+
+# Archivos de sistema
+Thumbs.db
+ehthumbs.db

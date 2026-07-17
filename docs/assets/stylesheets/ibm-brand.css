@@ -1,0 +1,176 @@
+/* ─── IBM Brand — CE LATAM AI Portfolio ──────────────────────────────────── */
+
+/* Fuente IBM Plex (Google Fonts fallback) */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+/* ── Paleta IBM ─────────────────────────────────────────────────────────── */
+:root {
+  --ibm-blue-60:     #0F62FE;
+  --ibm-blue-50:     #4589FF;
+  --ibm-blue-10:     #EDF5FF;
+  --ibm-gray-10:     #F4F4F4;
+  --ibm-gray-20:     #E0E0E0;
+  --ibm-gray-80:     #393939;
+  --ibm-gray-100:    #161616;
+  --ibm-green-50:    #24A148;
+  --ibm-yellow-30:   #F1C21B;
+  --ibm-red-50:      #DA1E28;
+  --ibm-purple-60:   #8A3FFC;
+
+  --md-primary-fg-color:        var(--ibm-blue-60);
+  --md-primary-fg-color--light: var(--ibm-blue-50);
+  --md-primary-fg-color--dark:  #0043CE;
+  --md-accent-fg-color:         var(--ibm-blue-50);
+  --md-default-bg-color:        #FFFFFF;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color:        #161616;
+  --md-default-fg-color:        #F4F4F4;
+  --md-primary-fg-color:        var(--ibm-blue-50);
+}
+
+/* ── Card grid — Home ───────────────────────────────────────────────────── */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.portfolio-card {
+  border: 1px solid var(--ibm-gray-20);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  background: #FFFFFF;
+  text-decoration: none !important;
+  color: var(--ibm-gray-100) !important;
+  display: block;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.portfolio-card:hover {
+  border-color: var(--ibm-blue-60);
+  box-shadow: 0 2px 8px rgba(15, 98, 254, 0.12);
+}
+
+.portfolio-card .card-category {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ibm-blue-60);
+  margin-bottom: 0.4rem;
+}
+
+.portfolio-card .card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: var(--ibm-gray-100);
+}
+
+.portfolio-card .card-description {
+  font-size: 0.85rem;
+  color: #525252;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.portfolio-card .card-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* ── Badges de estado ───────────────────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2em 0.65em;
+  border-radius: 2px;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.badge-active {
+  background: #DEFBE6;
+  color: #044317;
+}
+
+.badge-in-progress {
+  background: #FFF8E1;
+  color: #7D5A00;
+}
+
+.badge-completed {
+  background: var(--ibm-blue-10);
+  color: #0043CE;
+}
+
+/* ── Sección de arquitectura ────────────────────────────────────────────── */
+.architecture-block {
+  background: var(--ibm-gray-10);
+  border-left: 4px solid var(--ibm-blue-60);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+}
+
+/* ── Tabla de componentes ───────────────────────────────────────────────── */
+.md-typeset table:not([class]) {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--ibm-blue-60);
+  color: white;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  text-align: left;
+}
+
+.md-typeset table:not([class]) td {
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid var(--ibm-gray-20);
+}
+
+.md-typeset table:not([class]) tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── Mermaid diagrams ───────────────────────────────────────────────────── */
+.mermaid {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+/* ── Separador de secciones ─────────────────────────────────────────────── */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--ibm-gray-20);
+  margin: 2rem 0;
+}
+
+/* ── Header del asset ───────────────────────────────────────────────────── */
+.asset-header {
+  padding: 1.5rem 0 1rem;
+  border-bottom: 2px solid var(--ibm-blue-60);
+  margin-bottom: 2rem;
+}
+
+.asset-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.asset-meta {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #525252;
+}

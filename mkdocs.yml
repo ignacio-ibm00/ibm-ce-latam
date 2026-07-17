@@ -1,0 +1,92 @@
+site_name: CE LATAM AI Portfolio
+site_description: Portfolio de assets de IA del equipo Client Engineering LATAM — IBM
+site_url: https://ibm-ce-latam.github.io/ce-latam-ai-portfolio/
+repo_url: https://github.com/ibm-ce-latam/ce-latam-ai-portfolio
+repo_name: ce-latam-ai-portfolio
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: es
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo oscuro
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a modo claro
+  font:
+    text: IBM Plex Sans
+    code: IBM Plex Mono
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - navigation.instant
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.tooltips
+  icon:
+    repo: fontawesome/brands/github
+
+extra_css:
+  - assets/stylesheets/ibm-brand.css
+
+plugins:
+  - search:
+      lang: es
+  - awesome-pages
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Inicio: index.md
+  - Pilotos & MVPs:
+    - pilotos/index.md
+    - AGIP: pilotos/agip/index.md
+    - Galicia: pilotos/galicia/index.md
+    - Swiss Medical: pilotos/swiss-medical/index.md
+    - GCBA Tribunales: pilotos/gcba-tribunales/index.md
+    - Telecom: pilotos/telecom/index.md
+  - Workshops:
+    - workshops/index.md
+    - Bootcamp askHR — BCI: workshops/bootcamp-askhr-bci/index.md
+    - Bee-tech wxO Bootcamp: workshops/bee-tech-wxo/index.md
+    - Tech Summit Labs 2026: workshops/tech-summit-labs-2026/index.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ibm-ce-latam
+      name: IBM CE LATAM en GitHub
+
+copyright: IBM Client Engineering LATAM — Ignacio Ayerbe · Martina Pérez
