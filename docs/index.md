@@ -44,7 +44,7 @@
 <a href="pilotos/gcba-tribunales/" class="portfolio-card">
   <div class="card-category">⚖️ Justicia</div>
   <div class="card-title">GCBA Tribunales</div>
-  <div class="card-description">Procesamiento inteligente de expedientes judiciales y agente conversacional para consulta de estado de causas.</div>
+  <div class="card-description">Extracción automática de entidades de expedientes judiciales en PDF: Mistral (visión) + GPT (entidades) con visualización en página web.</div>
   <div class="card-footer">
     <span class="badge badge-active">✅ Activo</span>
     <span>watsonx.ai</span>

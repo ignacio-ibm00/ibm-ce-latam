@@ -11,9 +11,9 @@
 
 ## Descripción del caso
 
-El **Gobierno de la Ciudad de Buenos Aires** gestiona miles de expedientes judiciales en los Tribunales de la Ciudad. El proceso actual implica navegación manual por sistemas complejos para consultar el estado de una causa, con barreras de acceso para ciudadanos y abogados que no conocen la jerga del sistema judicial.
+El **Gobierno de la Ciudad de Buenos Aires** gestiona miles de expedientes judiciales en los Tribunales de la Ciudad. El proceso de carga era completamente manual: los operadores extraían datos de PDFs judiciales a mano, lento y propenso a errores.
 
-La **solución**: un sistema de procesamiento inteligente de expedientes basado en **IBM watsonx.ai** que extrae automáticamente la información relevante de documentos judiciales (carátula, partes, objeto del proceso, fechas) y la hace accesible a través de un **agente conversacional** que responde en lenguaje natural — sin necesidad de navegar por el sistema judicial.
+La **solución**: un pipeline de dos modelos de IA desplegado en **IBM watsonx.ai**. Un modelo de visión (**Mistral**) lee e interpreta el PDF del expediente; un modelo de extracción de entidades (**GPT**) identifica y estructura los datos clave — carátula, partes, fechas, objeto del proceso. Las entidades extraídas se visualizan en una **página web** diseñada para los operadores judiciales.
 
 ---
 
@@ -33,16 +33,17 @@ La **solución**: un sistema de procesamiento inteligente de expedientes basado 
 | **Contacto CE** | Ignacio Ayerbe · Martina Pérez |
 
 ### El problema
-Los ciudadanos y abogados necesitan consultar el estado de sus expedientes judiciales navegando por sistemas complejos que requieren conocimiento técnico del proceso judicial y no están diseñados para el usuario final.
+Los operadores judiciales cargaban manualmente los datos de expedientes en PDF — carátula, partes, fechas, objeto del proceso — en el sistema interno. Un proceso lento, repetitivo y con alto riesgo de error humano.
 
 ### La solución IBM
-IBM watsonx.ai procesa los expedientes judiciales, extrae la información estructurada y la hace consultable a través de un agente conversacional que responde preguntas sobre el estado del proceso en lenguaje natural.
+Un pipeline de dos modelos en **IBM watsonx.ai**: **Mistral** (visión) interpreta el PDF del expediente y **GPT** extrae y estructura las entidades clave. Las entidades extraídas se presentan en una página web para que el operador las revise y confirme, eliminando la carga manual.
 
 ### Valor de negocio
 
-- ✅ **Acceso democrático** a la información judicial sin barreras técnicas
-- ✅ **Procesamiento automático** de documentos legales complejos
-- ✅ **Reducción de consultas** presenciales a los juzgados
+- ✅ **Extracción automática** de entidades judiciales desde PDFs — sin carga manual
+- ✅ **Pipeline de dos modelos** especializados: visión (Mistral) + extracción de entidades (GPT)
+- ✅ **Visualización en página web** — el operador ve las entidades extraídas de forma inmediata
+- ✅ **Reducción de errores** en la carga de datos de expedientes
 
 ---
 
@@ -50,52 +51,47 @@ IBM watsonx.ai procesa los expedientes judiciales, extrae la información estruc
 
 ```mermaid
 flowchart TD
-    USER([👤 Ciudadano / Abogado])
     OPERADOR([👩‍💼 Operador judicial])
 
-    subgraph ENTRADA ["Documentos de entrada"]
-        EXP["📄 Expediente judicial\nPDF / documento"]
+    subgraph ENTRADA ["Documento de entrada"]
+        EXP["📄 Expediente judicial\nPDF"]
     end
 
     subgraph IBM_AI ["🧠 IBM watsonx.ai"]
         direction TB
-        EXTRACT["🔍 Extracción de información\nCarátula · Partes · Fechas"]
-        AGENT["🤖 Agente conversacional\nConsultas en lenguaje natural"]
-        LLM["💡 Modelo de lenguaje\nComprensión de documentos\nlegales en español"]
+        MISTRAL["👁️ Mistral — Modelo de visión\nLee e interpreta el PDF"]
+        GPT["🔍 GPT — Extracción de entidades\nCarátula · Partes · Fechas · Objeto"]
     end
 
-    subgraph GCBA_SISTEMAS ["🏛️ Sistemas GCBA"]
-        JUDICIAL["⚖️ Sistema judicial GCBA"]
+    subgraph WEB ["🌐 Página web"]
+        UI["📋 Visualización de entidades\nextreídas del expediente"]
     end
 
-    OPERADOR -->|"Carga expediente"| EXP
-    USER -->|"Consulta estado"| AGENT
-    EXP --> EXTRACT
-    EXTRACT --> LLM
-    LLM --> JUDICIAL
-    AGENT --> LLM
-    JUDICIAL --> AGENT
-    AGENT -->|"Respuesta en\nlenguaje natural"| USER
+    OPERADOR -->|"Sube el PDF"| EXP
+    EXP --> MISTRAL
+    MISTRAL -->|"Contenido interpretado"| GPT
+    GPT -->|"Entidades estructuradas"| UI
+    UI -->|"Revisa y confirma"| OPERADOR
 ```
 
-| Componente | Tecnología IBM | Rol |
+| Componente | Tecnología | Rol |
 |---|---|---|
-| Extracción de información | IBM watsonx.ai | Procesa PDFs judiciales y extrae datos estructurados |
-| Agente conversacional | IBM watsonx.ai | Responde consultas sobre expedientes en lenguaje natural |
-| Modelo de lenguaje | IBM watsonx.ai (Granite / Llama) | Comprende y sintetiza documentos legales en español |
-| Sistema judicial GCBA | Sistema legado GCBA | Repositorio central de expedientes |
+| Modelo de visión | Mistral (IBM watsonx.ai) | Lee e interpreta el PDF del expediente judicial |
+| Extracción de entidades | GPT (IBM watsonx.ai) | Identifica y estructura carátula, partes, fechas y objeto del proceso |
+| Página web | Frontend web | Muestra las entidades extraídas al operador para revisión |
 
 ---
 
 ??? note "🔧 Guía técnica para engineers"
 
-    **Stack:** IBM watsonx.ai · Python · PDF processing
+    **Stack:** IBM watsonx.ai · Mistral (visión) · GPT (extracción de entidades) · Python · Frontend web
 
-    La solución usa **IBM watsonx.ai** para procesar documentos judiciales en formato PDF, extraer información estructurada y responder preguntas en lenguaje natural sobre los expedientes.
+    El pipeline procesa PDFs judiciales en dos pasos:
+    1. **Mistral** recibe el PDF y lo interpreta con capacidades de visión
+    2. **GPT** recibe el contenido interpretado y extrae las entidades clave como JSON estructurado (carátula, partes, fechas, objeto del proceso)
+    3. La página web consume el JSON y presenta las entidades al operador
 
     **Documentos de referencia del proyecto:**
 
     - `Información del caso.docx` — descripción del caso de uso y requerimientos
     - `expediente ejemplo.pdf` — documento de ejemplo para pruebas (anonimizado)
-
-    → Guía técnica completa disponible en el repositorio: `pilotos/gcba-tribunales/guia-tecnica.md`
