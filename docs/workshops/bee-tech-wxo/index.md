@@ -11,9 +11,9 @@
 
 ## Descripción del caso
 
-El **Bee-tech wxO Bootcamp** es un evento de capacitación en Inteligencia Artificial Agéntica realizado para la empresa **Las Marías** (fabricante de yerba mate Taragüí), donde los participantes construyen agentes de IA con IBM watsonx Orchestrate en un contexto de negocio real.
+El **Bee-tech wxO Bootcamp** es un evento de capacitación en IA Agéntica realizado para **Las Marías** (fabricante de yerba mate Taragüí, Unión y La Merced), donde los participantes construyen un **sistema multiagente real** con IBM watsonx Orchestrate usando datos operacionales de la empresa.
 
-El workshop se despliega con un **portal web propio** (HTML/CSS servido con nginx en IBM Code Engine) que centraliza las guías del participante, el material del bootcamp y el acceso a los agentes — creando una experiencia profesional y autónoma para el evento.
+Los participantes construyen 4 agentes de punta a punta: un agente de inventario en tiempo real conectado a Confluent Kafka vía MCP, un agente de análisis competitivo con web scraping, un agente catálogo visual con recomendación conversacional, y un orquestador comercial que coordina los tres anteriores. Todo accesible desde un **portal web propio** deployado en IBM Code Engine.
 
 ---
 
@@ -29,17 +29,28 @@ El workshop se despliega con un **portal web propio** (HTML/CSS servido con ngin
 | **Industria** | Consumo masivo / Food & Beverage |
 | **País** | Argentina |
 | **Estado** | ✔️ Completado |
-| **Productos IBM** | IBM watsonx Orchestrate · IBM Code Engine |
+| **Productos IBM** | IBM watsonx Orchestrate · IBM Code Engine · IBM Container Registry |
 | **Contacto CE** | Ignacio Ayerbe · Martina Pérez |
 
 ### El caso de uso del bootcamp
-Construir agentes de IA para casos de uso de Las Marías con IBM watsonx Orchestrate, accedidos desde un portal web deployado en IBM Code Engine durante el evento.
+Los participantes construyen un sistema multiagente para Las Marías con 4 agentes especializados en watsonx Orchestrate: disponibilidad de inventario en tiempo real (Confluent Kafka + MCP), análisis competitivo de yerba mate (web scraping con Exa), recomendación visual de productos (RAG conversacional), y un orquestador comercial que coordina los tres. El sistema asiste tanto a equipos internos como a canales digitales de venta.
+
+### Los 4 agentes construidos
+
+| Agente | Rol | Tecnología |
+|---|---|---|
+| **Agente Inventario** | Consulta stock en tiempo real por SKU y depósito | Herramienta MCP → Confluent Kafka + ksqlDB |
+| **Agente Competencia** | Analiza competidores de yerba mate con datos de la web | Web scraping en tiempo real con Exa (web_search_exa + web_fetch_exa) |
+| **Agente Catálogo Visual** | Recomienda productos a clientes finales con imágenes | Proceso conversacional + tool `recommend_visual_products` |
+| **Orquestador Comercial** | Coordina los agentes de inventario y competencia para equipos internos | watsonx Orchestrate multi-agent con lógica de orquestación |
 
 ### Valor del workshop
 
-- ✅ **Portal propio del evento** con identidad visual de Las Marías deployado en IBM Cloud
-- ✅ **Experiencia autónoma** — los participantes tienen guías, materiales y acceso a agentes en un solo lugar
-- ✅ **Replicable** — el portal se puede reusar para cualquier bootcamp futuro cambiando el contenido
+- ✅ **Sistema multiagente real** — 4 agentes con roles diferenciados, no demos genéricas
+- ✅ **Inventario en tiempo real** — herramienta MCP conectada a Confluent Kafka y ksqlDB
+- ✅ **Análisis competitivo con web scraping** — Exa busca y extrae datos reales de competidores
+- ✅ **Catálogo visual conversacional** — el agente pregunta preferencias y devuelve producto + imagen
+- ✅ **Portal propio del evento** deployado en IBM Code Engine con identidad Las Marías
 
 ---
 
@@ -47,55 +58,82 @@ Construir agentes de IA para casos de uso de Las Marías con IBM watsonx Orchest
 
 ```mermaid
 flowchart TD
-    PARTICIPANT([👩‍💻 Participante del Bootcamp\nEmpleado de Las Marías])
+    PARTICIPANTE([👩‍💻 Participante / Empleado\nLas Marías])
+    CLIENTE([🛒 Cliente final\ncanal digital])
 
-    subgraph PORTAL ["Portal del Evento (IBM Code Engine)"]
-        HUB["🌐 Interfaz web Bee-tech\nnginx · HTML/CSS · Docker"]
-        GUIDE_LM["📖 Guía Las Marías"]
-        GUIDE_P["📖 Guía del participante"]
+    subgraph PORTAL ["🌐 Portal Bee-tech — IBM Code Engine"]
+        HUB["Interfaz web del bootcamp\nnginx · HTML/CSS · Docker"]
+        GUIDE["📖 Guías del participante"]
     end
 
     subgraph IBM_WXO ["🧠 IBM watsonx Orchestrate"]
-        AGENTS["🤖 Agentes de IA\npara Las Marías"]
+        ORCH["🎯 Orquestador Comercial\nCoordia inventario y competencia\npara equipos internos"]
+        INV["📦 Agente Inventario\nStock en tiempo real\nherramienta MCP"]
+        COMP["🔍 Agente Competencia\nAnálisis competitivo\nweb scraping Exa"]
+        CAT["🖼️ Agente Catálogo Visual\nRecomendación conversacional\n+ imágenes de productos"]
     end
 
-    subgraph IBM_CLOUD ["☁️ IBM Cloud"]
-        ICR["📦 Container Registry\nImagen Docker"]
-        CE["🚀 Code Engine\nbeetech-labs-app"]
+    subgraph DATOS ["📊 Fuentes de datos"]
+        KAFKA["⚡ Confluent Kafka + ksqlDB\nInventario en tiempo real\nSKUs por depósito"]
+        EXA["🌐 Exa Web Search\nweb_search_exa\nweb_fetch_exa"]
+        CATALOG["🗂️ Catálogo visual\nproductos + imágenes\nCode Engine"]
     end
 
-    PARTICIPANT --> HUB
-    HUB --> GUIDE_LM & GUIDE_P
-    PARTICIPANT --> AGENTS
-    HUB -->|"Contenedor Docker"| ICR --> CE
+    PARTICIPANTE --> HUB
+    HUB --> GUIDE
+    PARTICIPANTE --> ORCH
+    ORCH --> INV & COMP
+    CLIENTE --> CAT
+    INV -->|"get_sku_availability MCP"| KAFKA
+    COMP -->|"búsqueda en tiempo real"| EXA
+    CAT -->|"recommend_visual_products"| CATALOG
 ```
 
-| Componente | Tecnología IBM | Rol |
+| Componente | Tecnología | Rol |
 |---|---|---|
-| Portal del evento | IBM Code Engine + nginx | Sirve la interfaz web del bootcamp |
-| Agentes de Las Marías | IBM watsonx Orchestrate | Casos de uso de IA para el negocio |
-| Container Registry | IBM Cloud (ICR) | Almacena la imagen Docker del portal |
+| Orquestador Comercial | watsonx Orchestrate (multi-agent) | Coordina Agente Inventario y Agente Competencia para empleados internos |
+| Agente Inventario | watsonx Orchestrate + MCP | Consulta SKUs y stock por depósito desde Confluent Kafka vía ksqlDB |
+| Agente Competencia | watsonx Orchestrate + Exa | Analiza competidores de yerba mate con web scraping en tiempo real |
+| Agente Catálogo Visual | watsonx Orchestrate + tool REST | Recomienda productos con imágenes mediante proceso conversacional |
+| Portal del evento | IBM Code Engine + nginx + Docker | Sirve las guías y materiales del bootcamp |
+| IBM Container Registry | IBM Cloud (ICR) | Almacena la imagen Docker del portal |
 
 ---
 
 ??? note "🔧 Guía técnica para engineers"
 
-    **Stack:** HTML/CSS estático · Docker · nginx · IBM Code Engine · IBM Container Registry
+    **Stack:** IBM watsonx Orchestrate · ADK (Agent Development Kit) · Confluent Kafka · ksqlDB · MCP · Exa API · Python · Docker · nginx · IBM Code Engine
 
-    **URL del portal:** [beetech-labs-app.2b6jhfm91b2v.us-south.codeengine.appdomain.cloud](https://beetech-labs-app.2b6jhfm91b2v.us-south.codeengine.appdomain.cloud/)
+    **Herramientas usadas:**
 
-    **Levantar localmente:**
+    - `get_sku_availability` — herramienta MCP que consulta disponibilidad de productos por SKU y depósito en ksqlDB sobre Confluent Kafka
+    - `recommend_visual_products` — tool REST que devuelve producto + imagen según preferencias del usuario (intensidad, con/sin palo, experiencia)
+    - `web_search_exa` + `web_fetch_exa` — tools MCP de Exa para web scraping en tiempo real de competidores
+
+    **Agentes (YAMLs listos para importar con el ADK):**
+
+    ```
+    Agentes-de-IA-para-Las-Marías/assets/
+    ├── Agente_Inventario.yaml         # LLM: gpt-oss-120b · tool: get_sku_availability (MCP)
+    ├── Agente_Competencia.yaml        # LLM: gpt-oss-120b · tools: web_search_exa, web_fetch_exa
+    ├── Agente_Catalogo_Visual.yaml    # LLM: gpt-oss-120b · tool: recommend_visual_products
+    ├── Orquestador_Comercial.yaml     # LLM: gpt-oss-120b · collaborators: Inventario + Competencia
+    ├── get_sku_availability.py        # Servidor MCP de inventario
+    └── visual_product_tool.py         # Tool REST catálogo visual
+    ```
+
+    **Portal del bootcamp:**
+
     ```bash
-    cd workshops/bee-tech-wxo/Interfaz_Beetech
+    # Levantar localmente
+    cd "[Workshop] Bee-tech wxO/Interfaz_Beetech"
     docker compose up --build
     # Portal en http://localhost:8081
+
+    # Deploy en IBM Code Engine
+    podman build --platform linux/amd64 -t us.icr.io/ce-latam/beetech-portal:latest .
+    podman push us.icr.io/ce-latam/beetech-portal:latest
+    ibmcloud ce app update --name beetech-labs-app --image us.icr.io/ce-latam/beetech-portal:latest
     ```
 
-    **Deploy en IBM Code Engine:**
-    ```bash
-    cp deploy.sh.example deploy.sh
-    export IBMCLOUD_APIKEY="tu_api_key"
-    ./deploy.sh
-    ```
-
-    → Ver `README-DEPLOY.md` para instrucciones completas de deployment
+    **URL del portal:** [beetech-labs-app.2b6jhfm91b2v.us-south.codeengine.appdomain.cloud](https://beetech-labs-app.2b6jhfm91b2v.us-south.codeengine.appdomain.cloud/)
