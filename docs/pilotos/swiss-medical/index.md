@@ -13,7 +13,7 @@
 
 **Swiss Medical Group** es una de las principales empresas de medicina prepaga de Argentina, con cientos de miles de afiliados que realizan consultas diarias sobre turnos, coberturas y prestadores.
 
-El **problema**: el volumen de consultas al call center es alto, con tiempos de espera prolongados para gestiones que en su mayoría son simples — agendar un turno, consultar cobertura, buscar un prestador cercano. Los afiliados esperan la misma experiencia digital que obtienen en otros servicios: inmediata, disponible por WhatsApp y en lenguaje natural, incluso enviando mensajes de voz.
+El **problema**: Swiss Medical ya contaba con **Swity**, un asistente conversacional por WhatsApp. Pero Swity operaba con flujos predefinidos: no podía razonar ni actuar de forma autónoma frente a consultas complejas, no procesaba mensajes de voz y derivaba al call center en cuanto la conversación salía del guión. El resultado: tiempos de espera prolongados para gestiones que en su mayoría son simples — agendar un turno, consultar cobertura, buscar un prestador cercano.
 
 La **solución**: un agente conversacional de voz y texto en **IBM watsonx Orchestrate**, accesible por **WhatsApp**, con **17 herramientas** integradas que cubren la totalidad de las operaciones de autogestión del afiliado:
 
@@ -41,7 +41,7 @@ La **solución**: un agente conversacional de voz y texto en **IBM watsonx Orche
 | **Contacto CE** | Ignacio Ayerbe · Martina Pérez |
 
 ### El problema
-Los afiliados de Swiss Medical dependen del call center para gestiones de autogestión — turnos, coberturas, prestadores — que generan altos volúmenes de llamadas y tiempos de espera. El canal de WhatsApp, donde los afiliados ya están, no estaba aprovechado para autogestión real.
+Swiss Medical ya tenía presencia en WhatsApp con **Swity**, pero su arquitectura de chatbot tradicional generaba fricciones: no entendía consultas complejas, no procesaba audio, y requería escalada al call center en cuanto la conversación se desviaba del flujo programado. Los afiliados querían autogestión real — inmediata, en lenguaje natural, por voz o texto — y Swity no podía dársela.
 
 ### La solución IBM
 Un agente conversacional en watsonx Orchestrate integrado en **WhatsApp**, con capacidad de procesar mensajes de texto y de voz. Respaldado por 17 herramientas especializadas que cubren turnos, prestadores, coberturas, cartilla familiar y validación del contrato del afiliado.
