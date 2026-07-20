@@ -21,6 +21,10 @@ El workshop incluye el agente completo, los datos (PDF de beneficios, especifica
 
 ## One-Pager
 
+<a href="#" class="download-btn" style="opacity:0.5;cursor:not-allowed;" title="Próximamente">
+  📎 One-Pager — próximamente disponible
+</a>
+
 | Campo | Detalle |
 |---|---|
 | **Contexto** | Bootcamp Agentic — BCI (Banco de Crédito e Inversiones) |

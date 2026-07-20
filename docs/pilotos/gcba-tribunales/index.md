@@ -19,6 +19,10 @@ La **solución**: un sistema de procesamiento inteligente de expedientes basado 
 
 ## One-Pager
 
+<a href="#" class="download-btn" style="opacity:0.5;cursor:not-allowed;" title="Próximamente">
+  📎 One-Pager — próximamente disponible
+</a>
+
 | Campo | Detalle |
 |---|---|
 | **Cliente** | Gobierno de la Ciudad de Buenos Aires (GCBA) |

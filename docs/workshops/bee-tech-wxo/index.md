@@ -19,6 +19,10 @@ El workshop se despliega con un **portal web propio** (HTML/CSS servido con ngin
 
 ## One-Pager
 
+<a href="#" class="download-btn" style="opacity:0.5;cursor:not-allowed;" title="Próximamente">
+  📎 One-Pager — próximamente disponible
+</a>
+
 | Campo | Detalle |
 |---|---|
 | **Cliente / Contexto** | Las Marías — Bee-tech 2026 |

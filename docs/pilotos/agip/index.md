@@ -11,36 +11,45 @@
 
 ## Descripción del caso
 
-**AGIP** (Agencia de Recaudación de la Ciudad de Buenos Aires) atiende millones de consultas de contribuyentes por año relacionadas con impuestos municipales: ABL (Alumbrado, Barrido y Limpieza) e Inmobiliario, y Patentes Automotores.
+**AGIP** (Agencia de Ingresos Públicos de la Ciudad de Buenos Aires) es el organismo recaudador de CABA. Gestiona los principales tributos municipales que afectan a millones de contribuyentes:
 
-El **problema central**: los contribuyentes necesitan consultar su estado de deuda, obtener boletas y gestionar pagos, pero los canales tradicionales (call center, oficinas presenciales) generan fricciones, largas esperas y altos costos operativos.
+- **ABL** (Alumbrado, Barrido y Limpieza): tributo bimestral que se paga por cada inmueble registrado bajo una *partida* ABL. Es el impuesto que financia los servicios de limpieza, iluminación y barrido de las calles de la Ciudad.
+- **Inmobiliario**: impuesto sobre la propiedad inmueble (terrenos y edificios), también identificado por número de partida.
+- **Patentes Automotores**: impuesto al parque automotor, identificado por el *dominio* (patente) del vehículo. Se paga en cuotas bianuales.
 
-La **solución**: un sistema de agentes conversacionales construido sobre IBM watsonx Orchestrate que permite al contribuyente, desde cualquier canal digital, autenticarse con su CUIL, consultar sus deudas, obtener medios de pago y recibir su boleta por email — todo en una sola conversación, sin intervención humana.
+El **problema**: los contribuyentes necesitan consultar su estado de deuda, obtener boletas y gestionar pagos, pero los canales tradicionales (call center, oficinas presenciales) generan fricciones, largas esperas y están limitados al horario de atención.
+
+La **solución**: un sistema de agentes conversacionales construido sobre **IBM watsonx Orchestrate** que permite al contribuyente, desde cualquier canal digital, autenticarse con su CUIL, consultar sus deudas por partida o dominio, seleccionar el medio de pago (tarjeta, billetera virtual, Buepp, plan de facilidades) y recibir su boleta por email — todo en una sola conversación, sin intervención humana, disponible 24/7.
 
 ---
 
 ## One-Pager
 
+<a href="../../assets/onepagers/OnePage_AGIP.pptx" class="download-btn" download>
+  📥 Descargar One-Pager (PowerPoint)
+</a>
+
 | Campo | Detalle |
 |---|---|
-| **Cliente** | AGIP — Agencia de Recaudación CABA |
+| **Cliente** | AGIP — Agencia de Ingresos Públicos CABA |
 | **Industria** | Gobierno / Sector Público |
 | **País** | Argentina |
 | **Estado** | ✅ Activo |
-| **Productos IBM** | IBM watsonx Orchestrate |
+| **Productos IBM** | IBM watsonx Orchestrate · IBM Code Engine |
 | **Contacto CE** | Ignacio Ayerbe · Martina Pérez |
 
 ### El problema
-Los contribuyentes de CABA necesitan consultar y pagar sus obligaciones tributarias (ABL e Inmobiliario, Patentes), pero los canales existentes requieren intervención humana, generan esperas y están limitados al horario de atención.
+Los contribuyentes de CABA deben consultar y pagar sus obligaciones tributarias (ABL, Inmobiliario, Patentes) pero los canales disponibles requieren intervención humana, generan tiempos de espera y están limitados al horario comercial. No existe un canal digital conversacional que cubra el flujo completo de consulta + pago.
 
 ### La solución IBM
-Tres agentes especializados en IBM watsonx Orchestrate — orquestador, operaciones y consultas frecuentes — que guían al contribuyente a través del flujo completo: autenticación por CUIL, consulta de deuda, selección de medio de pago y envío de boleta, disponible 24/7.
+Tres agentes especializados en IBM watsonx Orchestrate — orquestador, operaciones y consultas frecuentes — que guían al contribuyente a través del flujo completo: autenticación por CUIL, consulta de deuda por partida o dominio, selección de medio de pago y envío de boleta, disponible 24/7.
 
 ### Valor de negocio
 
 - ✅ **Atención 24/7** sin costo adicional de recursos humanos
-- ✅ **Reducción de fricciones** en el proceso de pago de impuestos municipales
+- ✅ **Flujo completo de autogestión** — desde la consulta hasta el pago en una sola conversación
 - ✅ **Integración nativa** con la API de AGIP sin reescribir sistemas legados
+- ✅ **Múltiples medios de pago** — tarjeta de débito/crédito, billeteras virtuales, Buepp (con 20% descuento), plan de facilidades
 
 ---
 
@@ -51,41 +60,46 @@ flowchart TD
     USER([👤 Contribuyente CABA])
 
     subgraph CANAL ["Canal de acceso"]
-        CHAT["💬 Chat Embebido\n/ Web"]
+        CHAT["💬 Chat Web\nEmbebido en portal AGIP"]
     end
 
     subgraph IBM_WXO ["🧠 IBM watsonx Orchestrate"]
         direction TB
-        ORCH["🤖 Agente Orquestador\nPunto de entrada principal"]
-        OPS["⚙️ Agente de Operaciones\nLogin · Consulta · Pagos"]
-        FAQ["📚 Agente de Consultas\nPreguntas informativas"]
-        KB["📄 Knowledge Base\nABL · Inmobiliario · Patentes"]
+        ORCH["🤖 Agente Orquestador\nPunto de entrada · clasifica intención"]
+        OPS["⚙️ Agente de Operaciones\nLogin · Consulta deuda · Pagos · Email"]
+        FAQ["📚 Agente de Consultas Frecuentes\nPreguntas informativas sobre tributos"]
+        KB["📄 Knowledge Base\nABL/Inmobiliario · Patentes · Trámites AGIP"]
     end
 
-    subgraph MOCK_API ["🔌 API de AGIP\n(Node.js — IBM Code Engine)"]
-        AUTH["🔐 Autenticación por CUIL"]
-        DEUDA["🔍 Consulta de deuda"]
-        PAGOS["💳 Generación de pagos"]
+    subgraph API ["🔌 API Mock de AGIP\n(Node.js — IBM Code Engine)"]
+        AUTH["🔐 POST /auth/login\nAutenticación por CUIL"]
+        DEUDA_ABL["🔍 GET /consulta-deuda/abl/:partida\nDeuda ABL e Inmobiliario"]
+        DEUDA_PAT["🚗 GET /consulta-deuda/patente/:dominio\nDeuda de Patentes"]
+        PAGOS["💳 POST /pagos/generar-link\nGenerar link de pago"]
+        EMAIL["📧 POST /pagos/enviar-boleta\nEnviar boleta por email"]
     end
 
     USER -->|"Consulta sobre impuestos"| CHAT
     CHAT --> ORCH
-    ORCH -->|"Consulta informativa"| FAQ
-    ORCH -->|"Operación transaccional"| OPS
+    ORCH -->|"Pregunta informativa\n(¿Qué es el ABL? ¿Cuándo vence?)"| FAQ
+    ORCH -->|"Operación transaccional\n(consultar deuda, pagar)"| OPS
     FAQ -->|"Busca en documentos"| KB
     OPS --> AUTH
-    OPS --> DEUDA
+    OPS --> DEUDA_ABL
+    OPS --> DEUDA_PAT
     OPS --> PAGOS
-    PAGOS -->|"Link de pago / boleta"| USER
+    OPS --> EMAIL
+    PAGOS -->|"Link de pago / QR Buepp"| USER
+    EMAIL -->|"Boleta PDF por email"| USER
 ```
 
-| Componente | Tecnología IBM | Rol |
+| Componente | Tecnología | Rol |
 |---|---|---|
-| Agente Orquestador | watsonx Orchestrate | Punto de entrada, detecta intención y delega |
-| Agente de Operaciones | watsonx Orchestrate | Login, consulta de deuda y generación de pagos |
-| Agente de Consultas FAQ | watsonx Orchestrate | Responde preguntas informativas |
-| Knowledge Base | watsonx Orchestrate (KB) | Documentos: ABL, Inmobiliario, Patentes |
-| API AGIP | Node.js — IBM Code Engine | Mock de la API de AGIP |
+| Agente Orquestador | IBM watsonx Orchestrate | Punto de entrada único, detecta intención y delega |
+| Agente de Operaciones | IBM watsonx Orchestrate | Ejecuta el flujo transaccional completo |
+| Agente de Consultas Frecuentes | IBM watsonx Orchestrate | Responde preguntas informativas sobre tributos AGIP |
+| Knowledge Base | watsonx Orchestrate (KB) | Documentos: ABL/Inmobiliario, Patentes, procedimientos AGIP |
+| API Mock AGIP | Node.js — IBM Code Engine | Simula la API de AGIP con todos los endpoints del flujo real |
 
 ---
 
@@ -95,11 +109,11 @@ flowchart TD
 
     **Repositorio con el código:** `pilotos/agip/` en este repo.
 
-    La solución incluye una **mock API** en Node.js con endpoints de autenticación, consulta de deuda, medios de pago y envío de boletas. Los **tres agentes** de Orchestrate (orquestador, operaciones y consultas frecuentes) se configuran directamente en la plataforma.
+    La solución incluye una **mock API** en Node.js con endpoints de autenticación, consulta de deuda (ABL por partida, Patentes por dominio, contribuyente por CUIL), medios de pago, generación de link de pago y envío de boleta por email. Los **tres agentes** de Orchestrate (orquestador, operaciones y consultas frecuentes) se configuran directamente en la plataforma.
 
     **Instalación local:**
     ```bash
-    cd pilotos/agip/src/agip-mock-api
+    cd pilotos/agip/agip-mock-api
     npm install
     npm start
     # API disponible en http://localhost:8080
@@ -114,9 +128,9 @@ flowchart TD
 
     **Datos de prueba:**
 
-    | CUIL | Contribuyente |
-    |---|---|
-    | `20301112220` | Carlos López |
-    | `27289991110` | Ana Díaz |
+    | CUIL | Contribuyente | Partidas ABL | Patentes |
+    |---|---|---|---|
+    | `20301112220` | Carlos López | `0001001`, `0002002`, `0003003` | `AA111AA` |
+    | `27289991110` | Ana Díaz | — | — |
 
-    → Guía técnica completa disponible en el repositorio: `pilotos/agip/guia-tecnica.md`
+    → Guía técnica completa: `pilotos/agip/guia-tecnica.md`

@@ -1,8 +1,8 @@
 site_name: CE LATAM AI Portfolio
 site_description: Portfolio de assets de IA del equipo Client Engineering LATAM — IBM
-site_url: https://ibm-ce-latam.github.io/ce-latam-ai-portfolio/
-repo_url: https://github.com/ibm-ce-latam/ce-latam-ai-portfolio
-repo_name: ce-latam-ai-portfolio
+site_url: https://ce-latam-portfolio.2cf01a0x2smr.us-south.codeengine.appdomain.cloud/
+repo_url: https://github.com/ignacio-ibm00/ibm-ce-latam
+repo_name: ignacio-ibm00/ibm-ce-latam
 edit_uri: edit/main/docs/
 
 theme:

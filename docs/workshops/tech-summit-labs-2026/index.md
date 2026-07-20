@@ -19,6 +19,10 @@ La infraestructura del workshop se basa en un **Workshop Hub** — un portal MkD
 
 ## One-Pager
 
+<a href="#" class="download-btn" style="opacity:0.5;cursor:not-allowed;" title="Próximamente">
+  📎 One-Pager — próximamente disponible
+</a>
+
 | Campo | Detalle |
 |---|---|
 | **Evento** | Tech Summit Argentina 2026 |

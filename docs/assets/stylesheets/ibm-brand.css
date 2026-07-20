@@ -174,3 +174,27 @@
   font-size: 0.85rem;
   color: #525252;
 }
+
+/* ── Botón de descarga del One-Pager ────────────────────────────────────── */
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--ibm-blue-60);
+  color: #FFFFFF !important;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.55em 1.2em;
+  border-radius: 2px;
+  text-decoration: none !important;
+  margin: 0.75rem 0 1.25rem;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.download-btn:hover {
+  background: #0043CE;
+  box-shadow: 0 2px 8px rgba(15, 98, 254, 0.25);
+  color: #FFFFFF !important;
+}

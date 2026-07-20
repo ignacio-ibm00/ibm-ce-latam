@@ -22,6 +22,10 @@ Este MVP aborda **dos casos de uso estratégicos** identificados en el proceso d
 
 ## One-Pager
 
+<a href="#" class="download-btn" style="opacity:0.5;cursor:not-allowed;" title="Próximamente">
+  📎 One-Pager — próximamente disponible
+</a>
+
 | Campo | Detalle |
 |---|---|
 | **Cliente** | Telecom Argentina |
