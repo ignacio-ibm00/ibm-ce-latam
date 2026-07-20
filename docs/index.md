@@ -69,16 +69,6 @@
 
 <div class="portfolio-grid">
 
-<a href="workshops/bootcamp-askhr-bci/" class="portfolio-card">
-  <div class="card-category">🎓 Bootcamp</div>
-  <div class="card-title">Bootcamp askHR — BCI</div>
-  <div class="card-description">Lab hands-on para construir un agente de RRHH que responde preguntas sobre beneficios y gestiona solicitudes de vacaciones.</div>
-  <div class="card-footer">
-    <span class="badge badge-completed">✔️ Completado</span>
-    <span>watsonx Orchestrate</span>
-  </div>
-</a>
-
 <a href="workshops/bee-tech-wxo/" class="portfolio-card">
   <div class="card-category">🎓 Bootcamp</div>
   <div class="card-title">Bee-tech wxO Bootcamp</div>
