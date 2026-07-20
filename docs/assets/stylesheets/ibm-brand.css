@@ -1,200 +1,577 @@
-/* ─── IBM Brand — CE LATAM AI Portfolio ──────────────────────────────────── */
+/* ─── IBM Carbon Design System — CE LATAM AI Portfolio ───────────────────── */
+/* Reference: https://carbondesignsystem.com/                                 */
 
-/* Fuente IBM Plex (Google Fonts fallback) */
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+/* IBM Plex via Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
-/* ── Paleta IBM ─────────────────────────────────────────────────────────── */
+/* ── Carbon tokens (Light theme G10) ────────────────────────────────────── */
 :root {
+  /* Core IBM blues */
+  --ibm-blue-70:     #0043CE;
   --ibm-blue-60:     #0F62FE;
   --ibm-blue-50:     #4589FF;
+  --ibm-blue-40:     #78A9FF;
   --ibm-blue-10:     #EDF5FF;
-  --ibm-gray-10:     #F4F4F4;
-  --ibm-gray-20:     #E0E0E0;
-  --ibm-gray-80:     #393939;
+  --ibm-blue-5:      #F4F8FF;
+
+  /* Grays */
   --ibm-gray-100:    #161616;
+  --ibm-gray-90:     #262626;
+  --ibm-gray-80:     #393939;
+  --ibm-gray-70:     #525252;
+  --ibm-gray-50:     #8D8D8D;
+  --ibm-gray-30:     #C6C6C6;
+  --ibm-gray-20:     #E0E0E0;
+  --ibm-gray-10:     #F4F4F4;
+
+  /* Status */
   --ibm-green-50:    #24A148;
-  --ibm-yellow-30:   #F1C21B;
-  --ibm-red-50:      #DA1E28;
+  --ibm-green-20:    #A7F0BA;
+  --ibm-green-10:    #DEFBE6;
+  --ibm-yellow-40:   #F1C21B;
+  --ibm-yellow-10:   #FCF4D6;
+  --ibm-red-60:      #DA1E28;
   --ibm-purple-60:   #8A3FFC;
+  --ibm-teal-50:     #009D9A;
+  --ibm-teal-10:     #D9FBFB;
 
-  --md-primary-fg-color:        var(--ibm-blue-60);
-  --md-primary-fg-color--light: var(--ibm-blue-50);
-  --md-primary-fg-color--dark:  #0043CE;
-  --md-accent-fg-color:         var(--ibm-blue-50);
+  /* MkDocs Material palette overrides */
+  --md-primary-fg-color:        var(--ibm-gray-100);
+  --md-primary-fg-color--light: var(--ibm-gray-80);
+  --md-primary-fg-color--dark:  var(--ibm-gray-90);
+  --md-accent-fg-color:         var(--ibm-blue-60);
   --md-default-bg-color:        #FFFFFF;
+  --md-default-fg-color:        var(--ibm-gray-100);
+  --md-typeset-a-color:         var(--ibm-blue-60);
+
+  /* Spacing (Carbon 4px grid) */
+  --space-01: 0.125rem;  /* 2px  */
+  --space-02: 0.25rem;   /* 4px  */
+  --space-03: 0.5rem;    /* 8px  */
+  --space-04: 0.75rem;   /* 12px */
+  --space-05: 1rem;      /* 16px */
+  --space-06: 1.5rem;    /* 24px */
+  --space-07: 2rem;      /* 32px */
+  --space-08: 2.5rem;    /* 40px */
+  --space-09: 3rem;      /* 48px */
+
+  /* Typography */
+  --type-helper: 0.75rem;      /* 12px */
+  --type-label:  0.75rem;      /* 12px */
+  --type-body:   0.875rem;     /* 14px */
+  --type-body-lg: 1rem;        /* 16px */
+  --type-heading-sm: 1.25rem;  /* 20px */
+  --type-heading-md: 1.75rem;  /* 28px */
+  --type-heading-lg: 2.625rem; /* 42px */
 }
 
+/* Dark mode (slate) */
 [data-md-color-scheme="slate"] {
-  --md-default-bg-color:        #161616;
-  --md-default-fg-color:        #F4F4F4;
-  --md-primary-fg-color:        var(--ibm-blue-50);
+  --md-default-bg-color:     var(--ibm-gray-100);
+  --md-default-fg-color:     var(--ibm-gray-10);
+  --md-primary-fg-color:     var(--ibm-gray-90);
+  --md-typeset-a-color:      var(--ibm-blue-40);
+
+  --ibm-gray-20:  #393939;
+  --ibm-gray-10:  #262626;
+  --ibm-blue-10:  #001D6C;
+  --ibm-blue-5:   #00145A;
 }
 
-/* ── Card grid — Home ───────────────────────────────────────────────────── */
+/* ── Global typography ──────────────────────────────────────────────────── */
+body,
+.md-typeset {
+  font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  font-size: var(--type-body);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.md-typeset h1 {
+  font-size: var(--type-heading-md);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--ibm-gray-100);
+  margin-bottom: var(--space-06);
+}
+
+.md-typeset h2 {
+  font-size: var(--type-heading-sm);
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--ibm-gray-100);
+  margin-top: var(--space-08);
+  margin-bottom: var(--space-05);
+  padding-bottom: var(--space-03);
+  border-bottom: 1px solid var(--ibm-gray-20);
+}
+
+.md-typeset h3 {
+  font-size: var(--type-body-lg);
+  font-weight: 600;
+  color: var(--ibm-gray-90);
+  margin-top: var(--space-06);
+}
+
+.md-typeset p {
+  font-size: var(--type-body);
+  line-height: 1.6;
+  color: var(--ibm-gray-80);
+}
+
+.md-typeset strong {
+  font-weight: 600;
+  color: var(--ibm-gray-100);
+}
+
+/* ── Navigation — Carbon shell header ($gray-100) ───────────────────────── */
+.md-header {
+  background: var(--ibm-gray-100) !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid var(--ibm-gray-90) !important;
+  height: 3rem;
+}
+
+.md-header__inner {
+  height: 3rem;
+  padding: 0 var(--space-05);
+}
+
+.md-header__title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: #FFFFFF !important;
+}
+
+.md-header__topic {
+  color: #FFFFFF;
+}
+
+/* Tabs bar — Carbon $gray-90 */
+.md-tabs {
+  background: var(--ibm-gray-90) !important;
+  border-bottom: 1px solid var(--ibm-gray-80) !important;
+}
+
+.md-tabs__item {
+  height: 2.5rem;
+}
+
+.md-tabs__link {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ibm-gray-30) !important;
+  opacity: 1 !important;
+  padding: 0 var(--space-05);
+  transition: color 0.1s ease;
+}
+
+.md-tabs__link--active,
+.md-tabs__item:hover .md-tabs__link {
+  color: #FFFFFF !important;
+}
+
+.md-tabs__item--active .md-tabs__link {
+  color: #FFFFFF !important;
+  border-bottom: 2px solid var(--ibm-blue-60) !important;
+}
+
+/* Sidebar */
+.md-nav--primary .md-nav__title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ibm-gray-70);
+  padding: var(--space-05) var(--space-05) var(--space-02);
+}
+
+.md-nav__link {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--ibm-gray-80) !important;
+  padding: var(--space-02) var(--space-05);
+  transition: color 0.1s ease, background 0.1s ease;
+}
+
+.md-nav__link:hover {
+  color: var(--ibm-blue-60) !important;
+  background: var(--ibm-blue-5);
+}
+
+.md-nav__link--active {
+  color: var(--ibm-blue-60) !important;
+  font-weight: 600 !important;
+  background: var(--ibm-blue-10);
+  border-left: 2px solid var(--ibm-blue-60);
+}
+
+/* ── Search bar ─────────────────────────────────────────────────────────── */
+.md-search__form {
+  background: var(--ibm-gray-90) !important;
+  border: 1px solid var(--ibm-gray-80) !important;
+  border-radius: 0 !important;
+}
+
+.md-search__input {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.8125rem;
+  color: #FFFFFF !important;
+}
+
+.md-search__input::placeholder {
+  color: var(--ibm-gray-50) !important;
+}
+
+/* ── Hero / Home page ───────────────────────────────────────────────────── */
+.md-content {
+  max-width: 1056px;
+}
+
+/* Hero intro block on index.md */
+.md-typeset blockquote {
+  border-left: 4px solid var(--ibm-blue-60);
+  background: var(--ibm-gray-10);
+  padding: var(--space-05) var(--space-06);
+  margin: var(--space-06) 0;
+  border-radius: 0;
+}
+
+.md-typeset blockquote p {
+  color: var(--ibm-gray-80);
+  font-size: var(--type-body);
+  margin: 0;
+}
+
+/* ── Portfolio card grid ────────────────────────────────────────────────── */
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.25rem;
-  margin: 1.5rem 0;
+  grid-template-columns: repeat(auto-fill, minmax(296px, 1fr));
+  gap: 1px;          /* Carbon-style "hairline grid" */
+  margin: var(--space-06) 0 var(--space-07);
+  background: var(--ibm-gray-20);
+  border: 1px solid var(--ibm-gray-20);
 }
 
 .portfolio-card {
-  border: 1px solid var(--ibm-gray-20);
-  border-radius: 4px;
-  padding: 1.25rem 1.5rem;
   background: #FFFFFF;
   text-decoration: none !important;
   color: var(--ibm-gray-100) !important;
-  display: block;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-06) var(--space-07) var(--space-05);
+  border: none;
+  position: relative;
+  transition: background 0.1s ease;
+  min-height: 12rem;
+}
+
+.portfolio-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--ibm-blue-60);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
 }
 
 .portfolio-card:hover {
-  border-color: var(--ibm-blue-60);
-  box-shadow: 0 2px 8px rgba(15, 98, 254, 0.12);
+  background: var(--ibm-blue-5);
+}
+
+.portfolio-card:hover::before {
+  transform: scaleX(1);
 }
 
 .portfolio-card .card-category {
-  font-size: 0.72rem;
+  font-size: 0.6875rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ibm-blue-60);
-  margin-bottom: 0.4rem;
+  color: var(--ibm-gray-70);
+  margin-bottom: var(--space-03);
 }
 
 .portfolio-card .card-title {
   font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 0.3rem;
+  line-height: 1.3;
+  margin-bottom: var(--space-04);
   color: var(--ibm-gray-100);
 }
 
 .portfolio-card .card-description {
-  font-size: 0.85rem;
-  color: #525252;
-  line-height: 1.5;
-  margin-bottom: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--ibm-gray-70);
+  line-height: 1.55;
+  flex-grow: 1;
+  margin-bottom: var(--space-05);
 }
 
 .portfolio-card .card-footer {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-03);
   flex-wrap: wrap;
+  font-size: 0.75rem;
+  color: var(--ibm-gray-70);
+  padding-top: var(--space-04);
+  border-top: 1px solid var(--ibm-gray-20);
+  margin-top: auto;
 }
 
-/* ── Badges de estado ───────────────────────────────────────────────────── */
+/* ── Carbon Tags (badges) ───────────────────────────────────────────────── */
 .badge {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 0.2em 0.65em;
-  border-radius: 2px;
-  letter-spacing: 0.03em;
+  display: inline-flex;
+  align-items: center;
+  height: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  padding: 0 var(--space-03);
+  border-radius: 0.75rem;   /* Carbon pill tag */
   white-space: nowrap;
+  letter-spacing: 0;
+  gap: var(--space-02);
 }
 
 .badge-active {
-  background: #DEFBE6;
+  background: var(--ibm-green-10);
   color: #044317;
 }
 
 .badge-in-progress {
-  background: #FFF8E1;
-  color: #7D5A00;
+  background: var(--ibm-yellow-10);
+  color: #5D4037;
 }
 
 .badge-completed {
-  background: var(--ibm-blue-10);
-  color: #0043CE;
+  background: var(--ibm-teal-10);
+  color: #005D5D;
 }
 
-/* ── Sección de arquitectura ────────────────────────────────────────────── */
-.architecture-block {
-  background: var(--ibm-gray-10);
-  border-left: 4px solid var(--ibm-blue-60);
-  padding: 1rem 1.5rem;
-  margin: 1.5rem 0;
-  border-radius: 0 4px 4px 0;
-}
-
-/* ── Tabla de componentes ───────────────────────────────────────────────── */
-.md-typeset table:not([class]) {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-.md-typeset table:not([class]) th {
-  background: var(--ibm-blue-60);
-  color: white;
-  font-weight: 600;
-  padding: 0.6rem 1rem;
-  text-align: left;
-}
-
-.md-typeset table:not([class]) td {
-  padding: 0.55rem 1rem;
-  border-bottom: 1px solid var(--ibm-gray-20);
-}
-
-.md-typeset table:not([class]) tr:last-child td {
-  border-bottom: none;
-}
-
-/* ── Mermaid diagrams ───────────────────────────────────────────────────── */
-.mermaid {
-  text-align: center;
-  margin: 1.5rem 0;
-}
-
-/* ── Separador de secciones ─────────────────────────────────────────────── */
-.section-divider {
-  border: none;
-  border-top: 1px solid var(--ibm-gray-20);
-  margin: 2rem 0;
-}
-
-/* ── Header del asset ───────────────────────────────────────────────────── */
+/* ── Asset header (piloto/workshop page top) ────────────────────────────── */
 .asset-header {
-  padding: 1.5rem 0 1rem;
-  border-bottom: 2px solid var(--ibm-blue-60);
-  margin-bottom: 2rem;
-}
-
-.asset-header h1 {
-  margin-bottom: 0.5rem;
+  padding: var(--space-05) 0 var(--space-06);
+  border-bottom: 1px solid var(--ibm-gray-20);
+  margin-bottom: var(--space-07);
 }
 
 .asset-meta {
   display: flex;
-  gap: 0.75rem;
+  gap: var(--space-04);
   flex-wrap: wrap;
   align-items: center;
-  font-size: 0.85rem;
-  color: #525252;
+  font-size: 0.8125rem;
+  color: var(--ibm-gray-70);
+  margin-top: var(--space-04);
 }
 
-/* ── Botón de descarga del One-Pager ────────────────────────────────────── */
+.asset-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-02);
+}
+
+/* ── Architecture block ─────────────────────────────────────────────────── */
+.architecture-block {
+  background: var(--ibm-gray-10);
+  border-left: 4px solid var(--ibm-blue-60);
+  padding: var(--space-05) var(--space-06);
+  margin: var(--space-07) 0;
+  border-radius: 0;
+}
+
+/* ── Tables — Carbon data table ─────────────────────────────────────────── */
+.md-typeset table:not([class]) {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: var(--type-body);
+}
+
+.md-typeset table:not([class]) thead {
+  border-bottom: 2px solid var(--ibm-gray-100);
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--ibm-gray-10);
+  color: var(--ibm-gray-100);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: var(--space-04) var(--space-05);
+  text-align: left;
+  border-bottom: 2px solid var(--ibm-gray-100);
+}
+
+.md-typeset table:not([class]) td {
+  padding: var(--space-04) var(--space-05);
+  border-bottom: 1px solid var(--ibm-gray-20);
+  color: var(--ibm-gray-80);
+  vertical-align: middle;
+}
+
+.md-typeset table:not([class]) tr:hover td {
+  background: var(--ibm-blue-5);
+}
+
+.md-typeset table:not([class]) tr:last-child td {
+  border-bottom: 1px solid var(--ibm-gray-20);
+}
+
+/* ── Download button — Carbon primary button ─────────────────────────────── */
 .download-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: var(--space-03);
   background: var(--ibm-blue-60);
   color: #FFFFFF !important;
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 0.55em 1.2em;
-  border-radius: 2px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  padding: 0.6875rem 1rem 0.6875rem 1rem;  /* Carbon sm button: 11px top/bottom */
+  border-radius: 0;
   text-decoration: none !important;
-  margin: 0.75rem 0 1.25rem;
-  transition: background 0.15s ease, box-shadow 0.15s ease;
+  margin: var(--space-05) 0 var(--space-06);
+  transition: background 0.1s ease;
   border: none;
   cursor: pointer;
+  min-height: 2.5rem;
 }
 
 .download-btn:hover {
-  background: #0043CE;
-  box-shadow: 0 2px 8px rgba(15, 98, 254, 0.25);
+  background: var(--ibm-blue-70);
   color: #FFFFFF !important;
+}
+
+.download-btn:active {
+  background: var(--ibm-blue-70);
+}
+
+/* ── Admonitions ─────────────────────────────────────────────────────────── */
+.md-typeset .admonition {
+  border-radius: 0 !important;
+  border-left-width: 4px;
+  font-size: var(--type-body);
+}
+
+.md-typeset .admonition-title {
+  font-weight: 600;
+  font-size: 0.8125rem;
+}
+
+/* ── Code blocks — IBM Plex Mono ─────────────────────────────────────────── */
+.md-typeset code,
+.md-typeset pre {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 0.8125rem;
+}
+
+.md-typeset .highlight {
+  border-radius: 0;
+}
+
+.md-typeset :not(pre) > code {
+  background: var(--ibm-gray-10);
+  color: var(--ibm-gray-90);
+  padding: 0.1em 0.35em;
+  border-radius: 2px;
+  font-size: 0.8125rem;
+}
+
+/* ── Mermaid diagrams ─────────────────────────────────────────────────────── */
+.mermaid {
+  text-align: center;
+  margin: var(--space-07) 0;
+  padding: var(--space-06);
+  background: var(--ibm-gray-10);
+}
+
+/* ── Details/summary (collapsible sections) ──────────────────────────────── */
+.md-typeset details {
+  border-radius: 0 !important;
+  border: none !important;
+  border-left: 4px solid var(--ibm-gray-30) !important;
+  background: var(--ibm-gray-10);
+}
+
+.md-typeset details[open] {
+  border-left-color: var(--ibm-blue-60) !important;
+}
+
+.md-typeset details summary {
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: var(--space-04) var(--space-05);
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.md-footer {
+  background: var(--ibm-gray-100);
+}
+
+.md-footer-meta {
+  background: var(--ibm-gray-90);
+}
+
+/* ── Page dividers & spacing ─────────────────────────────────────────────── */
+.md-typeset hr {
+  border: none;
+  border-top: 1px solid var(--ibm-gray-20);
+  margin: var(--space-08) 0;
+}
+
+/* ── Dark mode overrides ─────────────────────────────────────────────────── */
+[data-md-color-scheme="slate"] .portfolio-card {
+  background: var(--ibm-gray-90);
+  color: var(--ibm-gray-10) !important;
+}
+
+[data-md-color-scheme="slate"] .portfolio-card:hover {
+  background: var(--ibm-gray-80);
+}
+
+[data-md-color-scheme="slate"] .portfolio-card .card-description {
+  color: var(--ibm-gray-30);
+}
+
+[data-md-color-scheme="slate"] .portfolio-card .card-footer {
+  border-top-color: var(--ibm-gray-80);
+  color: var(--ibm-gray-30);
+}
+
+[data-md-color-scheme="slate"] .portfolio-grid {
+  background: var(--ibm-gray-80);
+  border-color: var(--ibm-gray-80);
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
+  background: var(--ibm-gray-90);
+  color: var(--ibm-gray-10);
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) td {
+  color: var(--ibm-gray-20);
+  border-bottom-color: var(--ibm-gray-80);
+}
+
+[data-md-color-scheme="slate"] .md-typeset blockquote {
+  background: var(--ibm-gray-90);
+  border-left-color: var(--ibm-blue-50);
+}
+
+[data-md-color-scheme="slate"] .architecture-block {
+  background: var(--ibm-gray-90);
+}
+
+[data-md-color-scheme="slate"] .mermaid {
+  background: var(--ibm-gray-90);
 }
