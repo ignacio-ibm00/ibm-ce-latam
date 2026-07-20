@@ -11,9 +11,13 @@
 
 ## Descripción del caso
 
-El **Tech Summit Labs 2026** es el conjunto de laboratorios hands-on del Tech Summit Argentina 2026, el evento técnico más importante de IBM en la región. Los labs cubren IBM Bob (modernización de código RPGLE, Java), watsonx Orchestrate y watsonx.ai.
+El **Tech Summit Labs 2026** es el conjunto de laboratorios hands-on del Tech Summit Argentina 2026, el evento técnico más importante de IBM en la región. Los labs cubren tres workshops:
 
-La infraestructura del workshop se basa en un **Workshop Hub** — un portal MkDocs Material con dos sitios diferenciados: uno público para los participantes y uno interno para los instructores — deployados de forma independiente en IBM Code Engine.
+- **IBM Bob** — tres tracks: modernización de RPG (IBM i), modernización de Java a Liberty, y el track estrella: **Agentic Retail con Confluent y watsonx Orchestrate** (inventario en tiempo real + sistema multiagente + tienda React)
+- **watsonx Orchestrate** — agentes conversacionales
+- **watsonx.ai** — modelos y prompting
+
+La infraestructura se basa en un **Workshop Hub** — un portal MkDocs Material con dos sitios diferenciados: uno público para los participantes y uno interno para los instructores — deployados de forma independiente en IBM Code Engine.
 
 ---
 
@@ -28,17 +32,20 @@ La infraestructura del workshop se basa en un **Workshop Hub** — un portal MkD
 | **Evento** | Tech Summit Argentina 2026 |
 | **Audiencia** | Clientes, partners técnicos e ingenieros IBM |
 | **Estado** | ✔️ Completado |
-| **Productos IBM** | IBM Bob · IBM watsonx Orchestrate · IBM watsonx.ai · IBM Code Engine |
+| **Productos IBM** | IBM Bob · IBM watsonx Orchestrate · IBM watsonx.ai · Confluent Kafka · IBM Code Engine |
 | **Contacto CE** | Ignacio Ayerbe · Martina Pérez |
 
 ### El caso de uso
 Proveer una experiencia de laboratorio hands-on de alta calidad para el Tech Summit 2026, con navegación unificada, identidad visual IBM, y separación clara entre contenido para participantes y pre-work para instructores.
 
+El track más destacado es **Real-Time Agentic Retail**: tres labs secuenciales donde los participantes construyen un sistema completo de punta a punta — pipeline de inventario en Confluent Kafka (Lab 1), sistema multiagente en watsonx Orchestrate con MCP + RAG (Lab 2), y tienda web React con el asistente embebido construida con IBM Bob (Lab 3).
+
 ### Valor del workshop
 
-- ✅ **Un repo, dos sitios** — Hub público e Instructors Guide interno con deployment independiente
-- ✅ **Reusable** — nueva taxonomía de labs (Solución → Grupo → Lab N) lista para futuros eventos
-- ✅ **IBM Brand** — identidad visual IBM consistente con colores por solución
+- ✅ **Agentic Retail end-to-end** — Confluent Kafka → agentes wxO (MCP + RAG) → tienda React con asistente embebido
+- ✅ **3 workshops, 3 tecnologías** — IBM Bob (RPG · Java · Agentic Retail), watsonx Orchestrate, watsonx.ai
+- ✅ **Un repo, dos sitios** — Hub público e Instructors Guide interno con deployment independiente en Code Engine
+- ✅ **Reusable** — taxonomía de labs (Solución → Grupo → Lab N) lista para futuros eventos
 
 ---
 
@@ -77,12 +84,14 @@ flowchart TD
     INSTRUCTOR --> INST_APP
 ```
 
-| Componente | Tecnología IBM | Rol |
+| Componente | Tecnología | Rol |
 |---|---|---|
 | Workshop Hub | MkDocs Material + IBM Code Engine | Portal público con los labs para participantes |
 | Instructors Guide | MkDocs Material + IBM Code Engine | Portal interno con pre-work para instructores |
+| Confluent Kafka + ksqlDB | Confluent Cloud | Pipeline de inventario en tiempo real (Lab 1 — Agentic Retail) |
+| watsonx Orchestrate (4 agentes) | IBM watsonx Orchestrate | Sistema multiagente: SKU, sustitutos (RAG), supervisor, asistente cliente (Lab 2) |
+| Voltia — tienda React | IBM Bob + React | Frontend construido con Bob con asistente wxO embebido (Lab 3) |
 | IBM Container Registry | IBM Cloud (ICR) | Imágenes Docker de ambos sitios |
-| Estilos IBM Brand | CSS custom | Paleta IBM y colores por solución |
 
 ---
 
