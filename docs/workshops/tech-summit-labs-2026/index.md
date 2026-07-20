@@ -4,20 +4,16 @@
 <div class="asset-meta">
   <span class="badge badge-completed">✔️ Completado</span>
   <span>🏆 Tech Summit Argentina 2026</span>
-  <span>🤖 IBM Bob · watsonx</span>
+  <span>🤖 IBM Bob · Confluent · watsonx Orchestrate</span>
   <span>🇦🇷 Argentina</span>
 </div>
 </div>
 
 ## Descripción del caso
 
-El **Tech Summit Labs 2026** es el conjunto de laboratorios hands-on del Tech Summit Argentina 2026, el evento técnico más importante de IBM en la región. Los labs cubren tres workshops:
+El **Tech Summit Labs 2026** es el conjunto de laboratorios hands-on del Tech Summit Argentina 2026, el evento técnico más grande de IBM en la región. El workshop se centra en **IBM Bob** con 4 tracks de laboratorios disponibles, más watsonx Orchestrate y watsonx.ai como tracks planificados.
 
-- **IBM Bob** — tres tracks: modernización de RPG (IBM i), modernización de Java a Liberty, y el track estrella: **Agentic Retail con Confluent y watsonx Orchestrate** (inventario en tiempo real + sistema multiagente + tienda React)
-- **watsonx Orchestrate** — agentes conversacionales
-- **watsonx.ai** — modelos y prompting
-
-La infraestructura se basa en un **Workshop Hub** — un portal MkDocs Material con dos sitios diferenciados: uno público para los participantes y uno interno para los instructores — deployados de forma independiente en IBM Code Engine.
+La infraestructura se basa en un **Workshop Hub** — dos sitios MkDocs Material independientes (Hub público para participantes e Instructors Guide interno) deployados en IBM Code Engine.
 
 ---
 
@@ -32,20 +28,68 @@ La infraestructura se basa en un **Workshop Hub** — un portal MkDocs Material 
 | **Evento** | Tech Summit Argentina 2026 |
 | **Audiencia** | Clientes, partners técnicos e ingenieros IBM |
 | **Estado** | ✔️ Completado |
-| **Productos IBM** | IBM Bob · IBM watsonx Orchestrate · IBM watsonx.ai · Confluent Kafka · IBM Code Engine |
+| **Productos IBM** | IBM Bob · IBM watsonx Orchestrate · Confluent Kafka · IBM Code Engine |
 | **Contacto CE** | Ignacio Ayerbe · Martina Pérez |
 
-### El caso de uso
-Proveer una experiencia de laboratorio hands-on de alta calidad para el Tech Summit 2026, con navegación unificada, identidad visual IBM, y separación clara entre contenido para participantes y pre-work para instructores.
+### Los 4 tracks de IBM Bob
 
-El track más destacado es **Real-Time Agentic Retail**: tres labs secuenciales donde los participantes construyen un sistema completo de punta a punta — pipeline de inventario en Confluent Kafka (Lab 1), sistema multiagente en watsonx Orchestrate con MCP + RAG (Lab 2), y tienda web React con el asistente embebido construida con IBM Bob (Lab 3).
+=== "🛍️ Agentic Retail — Voltia (track estrella)"
+
+    Tres labs secuenciales en español que construyen **Voltia**, una tienda de electrónica con inventario en tiempo real e IA agéntica:
+
+    | Lab | Qué se construye | Tecnología |
+    |---|---|---|
+    | **Lab 1** | Pipeline de inventario en tiempo real: tópicos Kafka `inventory.transactions` + tabla ksqlDB `inventory.availability` por SKU y sucursal | Confluent Kafka + ksqlDB |
+    | **Lab 2** | 4 agentes en watsonx Orchestrate: SKU Availability (MCP→Kafka), Substitute Finder (RAG sobre catálogo), Store Associate (supervisor), Customer Shopping Assistant + snippet para embeber | IBM watsonx Orchestrate + ADK |
+    | **Lab 3** | Tienda React Voltia construida con IBM Bob desde mockups (storefront, producto, reserva) con el asistente del Lab 2 embebido y animaciones Framer Motion | IBM Bob + React + Framer Motion |
+
+=== "🏭 Java Modernization — Simple Pharmacy"
+
+    6 labs que migran una app farmacia de **WebSphere + Java 8 + Struts** a **Liberty + Java 21 + Angular**:
+
+    | Lab | Qué hace |
+    |---|---|
+    | **Lab 1** | Replatforming WebSphere → Liberty con AMA migration plans |
+    | **Lab 2** | Upgrade Java 8 → Java 21 con recipes de Bob |
+    | **Lab 3** | UI Struts → Angular 19 SPA con REST backend |
+    | **Lab 4** | Generación de suite JUnit 5 + Mockito + JaCoCo (>80% coverage) |
+    | **Lab Alt-4** | TDD desde OpenAPI 3.0: Red-Green-Refactor con Bob |
+    | **Lab 5** | Remediación de 6 vulnerabilidades de seguridad intencionales |
+
+=== "🖥️ IBM i & RPG Development — SAMCO"
+
+    6 labs que modernizan **SAMCO**, un sistema de gestión de pedidos con pantalla verde y RPG legacy:
+
+    | Lab | Qué hace |
+    |---|---|
+    | **Lab 0** | Descubrir SAMCO: business rules, RPG legacy, flujo de pedidos |
+    | **Lab 1** | Convertir RPG Fixed format → Free format con `Dcl-Proc` |
+    | **Lab 2** | Construir UI React + Carbon Design System moderna |
+    | **Lab 3** | Reemplazar acceso RLA por SQL embebido con JOINs |
+    | **Lab 4** *(opt.)* | Conectar Bob a IBM i vía MCP: queries en lenguaje natural sobre el sistema |
+    | **Lab 5** *(opt.)* | Generar playbooks Ansible para gestión de PTFs con Bob |
+
+=== "☕ Software Development Lifecycle — Bob's Beans"
+
+    7 labs que construyen **Bob's Beans**, una tienda de café, desde mockups hasta documentación:
+
+    | Lab | Qué hace |
+    |---|---|
+    | **Lab 01** | Planificación: mockups + API → task list con Bob en modo Plan |
+    | **Lab 02** | Storefront: grilla de productos filtrada por categoría desde REST |
+    | **Lab 03** | Product detail: routing dinámico, quantity stepper, add-to-cart |
+    | **Lab 04** | Cart & checkout: order summary + `createOrder()` + confirmación |
+    | **Lab 05** | Animaciones con Framer Motion: grid, toast, badge, checkout |
+    | **Lab 06** | Review visual contra mockups: responsiveness y estados vacíos |
+    | **Lab 07** | Documentación: site MkDocs Material generado por Bob |
 
 ### Valor del workshop
 
-- ✅ **Agentic Retail end-to-end** — Confluent Kafka → agentes wxO (MCP + RAG) → tienda React con asistente embebido
-- ✅ **3 workshops, 3 tecnologías** — IBM Bob (RPG · Java · Agentic Retail), watsonx Orchestrate, watsonx.ai
-- ✅ **Un repo, dos sitios** — Hub público e Instructors Guide interno con deployment independiente en Code Engine
-- ✅ **Reusable** — taxonomía de labs (Solución → Grupo → Lab N) lista para futuros eventos
+- ✅ **Agentic Retail end-to-end** — Confluent Kafka → 4 agentes wxO (MCP + RAG) → tienda React con asistente embebido
+- ✅ **Java Modernization completa** — WebSphere+Java8+Struts → Liberty+Java21+Angular, tests y seguridad
+- ✅ **IBM i & RPG moderno** — de pantalla verde y código Fixed a React+Carbon + MCP + Ansible
+- ✅ **SDLC con Bob** — 7 labs desde plan hasta docs, con app real funcionando
+- ✅ **Un repo, dos sitios** — Hub público e Instructors Guide interno deployados independientemente en Code Engine
 
 ---
 
@@ -57,63 +101,98 @@ flowchart TD
     PARTICIPANT([👩‍💻 Participante\nTech Summit 2026])
 
     subgraph REPO ["📁 Repositorio GitHub — Workshop-Hub"]
-        HUB_CONTENT["📝 Labs para participantes\nhub/docs/"]
+        HUB_CONTENT["📝 Labs para participantes\nhub/docs/\n4 tracks IBM Bob"]
         INST_CONTENT["🔒 Pre-work instructores\ninstructors/docs/"]
-        SHARED["🎨 Estilos IBM compartidos"]
+        SHARED["🎨 Estilos IBM compartidos\nibm-brand.css · solutions.css"]
     end
 
     subgraph BUILD ["⚙️ MkDocs Material Build"]
-        HUB_BUILD["🌐 Workshop Hub\n(público)"]
-        INST_BUILD["🔒 Instructors Guide\n(interno)"]
+        HUB_BUILD["🌐 Workshop Hub (público)"]
+        INST_BUILD["🔒 Instructors Guide (interno)"]
     end
 
     subgraph IBM_CLOUD ["☁️ IBM Cloud"]
-        ICR["📦 IBM Container Registry"]
-        HUB_APP["🚀 Code Engine\nHub — público"]
-        INST_APP["🚀 Code Engine\nInstructors — interno"]
+        ICR["📦 IBM Container Registry\n2 imágenes Docker nginx:alpine"]
+        HUB_APP["🚀 Code Engine — Hub público"]
+        INST_APP["🚀 Code Engine — Instructors"]
     end
 
-    INSTRUCTOR --> INST_CONTENT
-    INSTRUCTOR --> HUB_CONTENT
+    subgraph AGENTIC ["🤖 Agentic Retail — infraestructura del track"]
+        KAFKA["⚡ Confluent Kafka + ksqlDB\ninventory.transactions\ninventory.availability"]
+        WXO["🧠 watsonx Orchestrate\n4 agentes + MCP tool"]
+        VOLTIA["🛍️ Voltia — React\nasistente embebido"]
+    end
+
+    INSTRUCTOR --> HUB_CONTENT & INST_CONTENT
     SHARED --> HUB_BUILD & INST_BUILD
     HUB_CONTENT --> HUB_BUILD
     INST_CONTENT --> INST_BUILD
-    HUB_BUILD & INST_BUILD --> ICR
-    ICR --> HUB_APP & INST_APP
+    HUB_BUILD & INST_BUILD --> ICR --> HUB_APP & INST_APP
     PARTICIPANT --> HUB_APP
     INSTRUCTOR --> INST_APP
+    HUB_APP -.->|"Lab 1"| KAFKA
+    KAFKA -.->|"Lab 2"| WXO
+    WXO -.->|"Lab 3"| VOLTIA
 ```
 
 | Componente | Tecnología | Rol |
 |---|---|---|
-| Workshop Hub | MkDocs Material + IBM Code Engine | Portal público con los labs para participantes |
-| Instructors Guide | MkDocs Material + IBM Code Engine | Portal interno con pre-work para instructores |
-| Confluent Kafka + ksqlDB | Confluent Cloud | Pipeline de inventario en tiempo real (Lab 1 — Agentic Retail) |
-| watsonx Orchestrate (4 agentes) | IBM watsonx Orchestrate | Sistema multiagente: SKU, sustitutos (RAG), supervisor, asistente cliente (Lab 2) |
-| Voltia — tienda React | IBM Bob + React | Frontend construido con Bob con asistente wxO embebido (Lab 3) |
-| IBM Container Registry | IBM Cloud (ICR) | Imágenes Docker de ambos sitios |
+| Workshop Hub | MkDocs Material + IBM Code Engine | Portal público con los 4 tracks de IBM Bob |
+| Instructors Guide | MkDocs Material + IBM Code Engine | Portal interno con pre-work, timing y gotchas |
+| IBM Container Registry | IBM Cloud (ICR) | 2 imágenes Docker nginx:alpine (Hub + Instructors) |
+| Confluent Kafka + ksqlDB | Confluent Cloud | Inventario en tiempo real — Agentic Retail Lab 1 |
+| watsonx Orchestrate (4 agentes) | IBM watsonx Orchestrate + ADK | SKU Availability (MCP) · Substitute Finder (RAG) · Store Associate · Shopping Assistant — Lab 2 |
+| Voltia | IBM Bob + React + Framer Motion | Tienda web con asistente wxO embebido — Lab 3 |
+| SAMCO | RPG legacy + Bob | Aplicación de referencia para el track IBM i & RPG |
+| Simple Pharmacy | Java + Liberty + Bob | Aplicación de referencia para el track Java Modernization |
+| Bob's Beans | React + Vite + Tailwind + Bob | Aplicación de referencia para el track SDLC |
 
 ---
 
 ??? note "🔧 Guía técnica para engineers"
 
-    **Stack:** MkDocs 1.6 · Material for MkDocs 9.5 · Python · Docker · nginx · IBM Code Engine
+    **Stack:** MkDocs Material 9.5 · Python · Docker · nginx:alpine · IBM Code Engine · IBM Container Registry · GitHub Actions (CI/CD)
+
+    **Estructura del repositorio:**
+    ```
+    Workshop-Hub/
+    ├── hub/docs/
+    │   ├── ibm-bob/
+    │   │   ├── agentic-retail/         # Track Voltia (3 labs) — Confluent + wxO + React
+    │   │   ├── java-modernization/     # Track Simple Pharmacy (6 labs) — WebSphere → Liberty
+    │   │   ├── ibm-i-rpg-development/  # Track SAMCO (6 labs) — RPG Fixed → Free + MCP
+    │   │   └── software-development-lifecycle/ # Track Bob's Beans (7 labs) — SDLC completo
+    │   ├── watsonx-orchestrate/        # Planificado (coming soon)
+    │   └── watsonx-ai/                 # Planificado (coming soon)
+    └── instructors/docs/               # Pre-work, timing y gotchas por track
+    ```
 
     **Levantar localmente:**
     ```bash
     pip install -r requirements.txt
 
-    # Hub (participantes)
-    mkdocs serve -f hub/mkdocs.yml -a localhost:8001
+    # Hub público (participantes)
+    mkdocs serve -f mkdocs.yml -a localhost:8000
 
-    # Instructors Guide (instructor)
-    mkdocs serve -f instructors/mkdocs.yml -a localhost:8002
+    # Instructors Guide (interno)
+    mkdocs serve -f mkdocs-instructors.yml -a localhost:8001
     ```
 
-    **Agregar un nuevo lab:**
+    **Deploy en IBM Code Engine (manual):**
+    ```bash
+    # Hub
+    podman build --platform linux/amd64 -f deploy/Dockerfile.hub \
+      -t us.icr.io/ce-latam/tech-summit-hub:latest .
+    podman push us.icr.io/ce-latam/tech-summit-hub:latest
+    ibmcloud ce app update --name tech-summit-hub \
+      --image us.icr.io/ce-latam/tech-summit-hub:latest
 
-    1. Crear `hub/docs/<solución>/<grupo>/lab-NN-nombre/index.md`
-    2. Linkear desde `hub/docs/<solución>/<grupo>/index.md`
-    3. Crear el pre-work en `instructors/docs/<mismo-path>/index.md`
+    # Instructors
+    podman build --platform linux/amd64 -f deploy/Dockerfile.instructors \
+      -t us.icr.io/ce-latam/tech-summit-instructors:latest .
+    podman push us.icr.io/ce-latam/tech-summit-instructors:latest
+    ibmcloud ce app update --name tech-summit-instructors \
+      --image us.icr.io/ce-latam/tech-summit-instructors:latest
+    ```
 
-    → Ver `README.md` completo del Workshop-Hub para convenciones de contenido y deployment
+    **Cada push a `main` dispara el GitHub Actions workflow** que buildea ambas imágenes y actualiza ambas apps en Code Engine automáticamente.
