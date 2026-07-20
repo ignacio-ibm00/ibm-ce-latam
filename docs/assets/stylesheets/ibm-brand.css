@@ -541,21 +541,31 @@ body,
 /* Los tokens Carbon ya están remapeados en :root[slate] arriba.              */
 /* Acá solo parcheamos lo que usa valores literales hardcodeados.             */
 
-/* Tipografía visible */
-[data-md-color-scheme="slate"] .md-typeset h1,
-[data-md-color-scheme="slate"] .md-typeset h2,
-[data-md-color-scheme="slate"] .md-typeset h3 {
-  color: #F4F4F4;
+/* Tipografía visible — especificidad alta para pisar Material slate */
+[data-md-color-scheme="slate"] .md-content .md-typeset h1,
+[data-md-color-scheme="slate"] .md-content .md-typeset h2,
+[data-md-color-scheme="slate"] .md-content .md-typeset h3,
+[data-md-color-scheme="slate"] .md-content .md-typeset h4,
+[data-md-color-scheme="slate"] .md-content .md-typeset h5 {
+  color: #F4F4F4 !important;
 }
 
-[data-md-color-scheme="slate"] .md-typeset p,
-[data-md-color-scheme="slate"] .md-typeset li,
-[data-md-color-scheme="slate"] .md-typeset blockquote p {
-  color: #C6C6C6;
+[data-md-color-scheme="slate"] .md-content .md-typeset p,
+[data-md-color-scheme="slate"] .md-content .md-typeset li,
+[data-md-color-scheme="slate"] .md-content .md-typeset blockquote p,
+[data-md-color-scheme="slate"] .md-content .md-typeset td,
+[data-md-color-scheme="slate"] .md-content .md-typeset dt,
+[data-md-color-scheme="slate"] .md-content .md-typeset dd {
+  color: #C6C6C6 !important;
 }
 
-[data-md-color-scheme="slate"] .md-typeset strong {
-  color: #F4F4F4;
+[data-md-color-scheme="slate"] .md-content .md-typeset strong,
+[data-md-color-scheme="slate"] .md-content .md-typeset b {
+  color: #F4F4F4 !important;
+}
+
+[data-md-color-scheme="slate"] .md-content .md-typeset em {
+  color: #C6C6C6 !important;
 }
 
 /* Sidebar */
