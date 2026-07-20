@@ -67,15 +67,23 @@
 
 /* Dark mode (slate) */
 [data-md-color-scheme="slate"] {
-  --md-default-bg-color:     var(--ibm-gray-100);
-  --md-default-fg-color:     var(--ibm-gray-10);
-  --md-primary-fg-color:     var(--ibm-gray-90);
-  --md-typeset-a-color:      var(--ibm-blue-40);
+  --md-default-bg-color:        #161616;
+  --md-default-fg-color:        #F4F4F4;
+  --md-default-fg-color--light: rgba(244, 244, 244, 0.7);
+  --md-default-fg-color--lighter: rgba(244, 244, 244, 0.3);
+  --md-primary-fg-color:        #262626;
+  --md-typeset-a-color:         #78A9FF;
+  --md-typeset-color:           #F4F4F4;
 
-  --ibm-gray-20:  #393939;
-  --ibm-gray-10:  #262626;
+  /* Remap Carbon tokens al dark */
+  --ibm-gray-100: #F4F4F4;   /* texto principal → claro */
+  --ibm-gray-90:  #E0E0E0;
+  --ibm-gray-80:  #C6C6C6;
+  --ibm-gray-70:  #A8A8A8;
+  --ibm-gray-20:  #393939;   /* bordes */
+  --ibm-gray-10:  #262626;   /* superficies */
   --ibm-blue-10:  #001D6C;
-  --ibm-blue-5:   #00145A;
+  --ibm-blue-5:   #001141;
 }
 
 /* ── Global typography ──────────────────────────────────────────────────── */
@@ -530,48 +538,119 @@ body,
 }
 
 /* ── Dark mode overrides ─────────────────────────────────────────────────── */
+/* Los tokens Carbon ya están remapeados en :root[slate] arriba.              */
+/* Acá solo parcheamos lo que usa valores literales hardcodeados.             */
+
+/* Tipografía visible */
+[data-md-color-scheme="slate"] .md-typeset h1,
+[data-md-color-scheme="slate"] .md-typeset h2,
+[data-md-color-scheme="slate"] .md-typeset h3 {
+  color: #F4F4F4;
+}
+
+[data-md-color-scheme="slate"] .md-typeset p,
+[data-md-color-scheme="slate"] .md-typeset li,
+[data-md-color-scheme="slate"] .md-typeset blockquote p {
+  color: #C6C6C6;
+}
+
+[data-md-color-scheme="slate"] .md-typeset strong {
+  color: #F4F4F4;
+}
+
+/* Sidebar */
+[data-md-color-scheme="slate"] .md-nav__link {
+  color: #C6C6C6 !important;
+}
+
+[data-md-color-scheme="slate"] .md-nav__link:hover {
+  color: #78A9FF !important;
+  background: rgba(120, 169, 255, 0.08);
+}
+
+[data-md-color-scheme="slate"] .md-nav__link--active {
+  color: #78A9FF !important;
+  background: rgba(0, 29, 108, 0.6);
+  border-left-color: #78A9FF;
+}
+
+/* Cards */
 [data-md-color-scheme="slate"] .portfolio-card {
-  background: var(--ibm-gray-90);
-  color: var(--ibm-gray-10) !important;
+  background: #262626;
+  color: #F4F4F4 !important;
 }
 
 [data-md-color-scheme="slate"] .portfolio-card:hover {
-  background: var(--ibm-gray-80);
+  background: #393939;
+}
+
+[data-md-color-scheme="slate"] .portfolio-card .card-title {
+  color: #F4F4F4;
 }
 
 [data-md-color-scheme="slate"] .portfolio-card .card-description {
-  color: var(--ibm-gray-30);
+  color: #A8A8A8;
 }
 
 [data-md-color-scheme="slate"] .portfolio-card .card-footer {
-  border-top-color: var(--ibm-gray-80);
-  color: var(--ibm-gray-30);
+  border-top-color: #393939;
+  color: #A8A8A8;
 }
 
 [data-md-color-scheme="slate"] .portfolio-grid {
-  background: var(--ibm-gray-80);
-  border-color: var(--ibm-gray-80);
+  background: #393939;
+  border-color: #393939;
 }
 
+/* Tablas */
 [data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
-  background: var(--ibm-gray-90);
-  color: var(--ibm-gray-10);
+  background: #262626;
+  color: #F4F4F4;
+  border-bottom-color: #C6C6C6;
 }
 
 [data-md-color-scheme="slate"] .md-typeset table:not([class]) td {
-  color: var(--ibm-gray-20);
-  border-bottom-color: var(--ibm-gray-80);
+  color: #C6C6C6;
+  border-bottom-color: #393939;
 }
 
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) thead {
+  border-bottom-color: #C6C6C6;
+}
+
+/* Blockquote */
 [data-md-color-scheme="slate"] .md-typeset blockquote {
-  background: var(--ibm-gray-90);
-  border-left-color: var(--ibm-blue-50);
+  background: #262626;
+  border-left-color: #4589FF;
 }
 
+/* Architecture block */
 [data-md-color-scheme="slate"] .architecture-block {
-  background: var(--ibm-gray-90);
+  background: #262626;
+  border-left-color: #4589FF;
 }
 
+/* Mermaid */
 [data-md-color-scheme="slate"] .mermaid {
-  background: var(--ibm-gray-90);
+  background: #262626;
+}
+
+/* Code inline */
+[data-md-color-scheme="slate"] .md-typeset :not(pre) > code {
+  background: #393939;
+  color: #E0E0E0;
+}
+
+/* Details/collapsible */
+[data-md-color-scheme="slate"] .md-typeset details {
+  background: #262626;
+  border-left-color: #525252 !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset details[open] {
+  border-left-color: #4589FF !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset details summary {
+  color: #F4F4F4;
 }
