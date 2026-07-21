@@ -1,4 +1,4 @@
-# GCBA Tribunales
+# Organismo Judicial · CABA
 
 <div class="asset-header">
 <div class="asset-meta">
@@ -11,7 +11,7 @@
 
 ## Descripción del caso
 
-El **Gobierno de la Ciudad de Buenos Aires** gestiona miles de expedientes judiciales en los Tribunales de la Ciudad. El proceso de carga era completamente manual: los operadores extraían datos de PDFs judiciales a mano, lento y propenso a errores.
+El **organismo judicial de la Ciudad de Buenos Aires** gestiona miles de expedientes en los Tribunales de la Ciudad. El proceso de carga era completamente manual: los operadores extraían datos de PDFs judiciales a mano, lento y propenso a errores.
 
 La **solución**: un pipeline de dos modelos de IA desplegado en **IBM watsonx.ai**. Un modelo de visión (**Mistral**) lee e interpreta el PDF del expediente; un modelo de extracción de entidades (**GPT**) identifica y estructura los datos clave — carátula, partes, fechas, objeto del proceso. Las entidades extraídas se visualizan en una **página web** diseñada para los operadores judiciales.
 
@@ -25,7 +25,7 @@ La **solución**: un pipeline de dos modelos de IA desplegado en **IBM watsonx.a
 
 | Campo | Detalle |
 |---|---|
-| **Cliente** | Gobierno de la Ciudad de Buenos Aires (GCBA) |
+| **Cliente** | Organismo Judicial — Ciudad de Buenos Aires |
 | **Industria** | Gobierno / Justicia |
 | **País** | Argentina |
 | **Estado** | ✅ Activo |

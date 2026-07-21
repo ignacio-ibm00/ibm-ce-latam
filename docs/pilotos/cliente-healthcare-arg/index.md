@@ -1,4 +1,4 @@
-# Swiss Medical
+# Cliente Healthcare · Argentina
 
 <div class="asset-header">
 <div class="asset-meta">
@@ -11,9 +11,9 @@
 
 ## Descripción del caso
 
-**Swiss Medical Group** es una de las principales empresas de medicina prepaga de Argentina, con cientos de miles de afiliados que realizan consultas diarias sobre turnos, coberturas y prestadores.
+El cliente es una de las principales empresas de medicina prepaga de Argentina, con cientos de miles de afiliados que realizan consultas diarias sobre turnos, coberturas y prestadores.
 
-El **problema**: Swiss Medical ya contaba con **Swity**, un asistente conversacional por WhatsApp. Pero Swity operaba con flujos predefinidos: no podía razonar ni actuar de forma autónoma frente a consultas complejas, no procesaba mensajes de voz y derivaba al call center en cuanto la conversación salía del guión. El resultado: tiempos de espera prolongados para gestiones que en su mayoría son simples — agendar un turno, consultar cobertura, buscar un prestador cercano.
+El **problema**: el cliente ya contaba con un **asistente conversacional previo** por WhatsApp. Pero el asistente operaba con flujos predefinidos: no podía razonar ni actuar de forma autónoma frente a consultas complejas, no procesaba mensajes de voz y derivaba al call center en cuanto la conversación salía del guión. El resultado: tiempos de espera prolongados para gestiones que en su mayoría son simples — agendar un turno, consultar cobertura, buscar un prestador cercano.
 
 La **solución**: un agente conversacional de voz y texto en **IBM watsonx Orchestrate**, accesible por **WhatsApp**, con **17 herramientas** integradas que cubren la totalidad de las operaciones de autogestión del afiliado:
 
@@ -33,7 +33,7 @@ La **solución**: un agente conversacional de voz y texto en **IBM watsonx Orche
 
 | Campo | Detalle |
 |---|---|
-| **Cliente** | Swiss Medical Group |
+| **Cliente** | Cliente Healthcare — Argentina |
 | **Industria** | Salud / Medicina Prepaga |
 | **País** | Argentina |
 | **Estado** | ✅ Activo |
@@ -41,7 +41,7 @@ La **solución**: un agente conversacional de voz y texto en **IBM watsonx Orche
 | **Contacto CE** | Ignacio Ayerbe · Martina Pérez |
 
 ### El problema
-Swiss Medical ya tenía presencia en WhatsApp con **Swity**, pero su arquitectura de chatbot tradicional generaba fricciones: no entendía consultas complejas, no procesaba audio, y requería escalada al call center en cuanto la conversación se desviaba del flujo programado. Los afiliados querían autogestión real — inmediata, en lenguaje natural, por voz o texto — y Swity no podía dársela.
+El cliente ya tenía presencia en WhatsApp con un **asistente conversacional previo**, pero su arquitectura de chatbot tradicional generaba fricciones: no entendía consultas complejas, no procesaba audio, y requería escalada al call center en cuanto la conversación se desviaba del flujo programado. Los afiliados querían autogestión real — inmediata, en lenguaje natural, por voz o texto — y el asistente previo no podía dársela.
 
 ### La solución IBM
 Un agente conversacional en watsonx Orchestrate integrado en **WhatsApp**, con capacidad de procesar mensajes de texto y de voz. Respaldado por 17 herramientas especializadas que cubren turnos, prestadores, coberturas, cartilla familiar y validación del contrato del afiliado.
@@ -59,7 +59,7 @@ Un agente conversacional en watsonx Orchestrate integrado en **WhatsApp**, con c
 
 ```mermaid
 flowchart TD
-    USER([👤 Afiliado Swiss Medical])
+    USER([👤 Afiliado])
 
     subgraph CANALES ["Canales de acceso"]
         WA["📱 WhatsApp\n(voz + texto)"]
@@ -73,7 +73,7 @@ flowchart TD
         TOOLS["🔧 17 Herramientas\nTurnos · Cartilla · Cobertura\nPrestadores · Contrato"]
     end
 
-    subgraph SMG_API ["🏥 API Swiss Medical"]
+    subgraph SMG_API ["🏥 API del cliente"]
         TURN["🗓️ Sistema de Turnos\nagendar · cancelar · disponibles"]
         PREST["👨‍⚕️ Catálogo de Prestadores\nbúsqueda por nombre / especialidad"]
         COB["💊 Coberturas y Prestaciones\ndetalle del plan del afiliado"]
@@ -99,7 +99,7 @@ flowchart TD
 | Agente de Atención | IBM watsonx Orchestrate | Agente conversacional de voz y texto para autogestión del afiliado |
 | `transcribirAudioWhatsapp` | watsonx Orchestrate (tool) | Convierte mensajes de voz de WhatsApp a texto para procesamiento |
 | 16 herramientas de negocio | watsonx Orchestrate (tools) | Turnos, cartilla, coberturas, prestadores, servicios, validación |
-| API Swiss Medical | Integración REST | Backend de afiliados, turnos y catálogo médico |
+| API del cliente | Integración REST | Backend de afiliados, turnos y catálogo médico |
 
 ---
 

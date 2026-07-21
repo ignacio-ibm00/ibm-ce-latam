@@ -72,11 +72,11 @@ nav:
   - Inicio: index.md
   - Pilotos & MVPs:
     - pilotos/index.md
-    - AGIP: pilotos/agip/index.md
-    - Galicia: pilotos/galicia/index.md
-    - Swiss Medical: pilotos/swiss-medical/index.md
-    - GCBA Tribunales: pilotos/gcba-tribunales/index.md
-    - Telecom: pilotos/telecom/index.md
+    - Organismo Tributario CABA: pilotos/organismo-tributario-caba/index.md
+    - Cliente Bancario Argentina: pilotos/cliente-bancario-arg/index.md
+    - Cliente Healthcare Argentina: pilotos/cliente-healthcare-arg/index.md
+    - Organismo Judicial CABA: pilotos/organismo-judicial-caba/index.md
+    - Cliente Telco Argentina: pilotos/cliente-telco-arg/index.md
   - Workshops:
     - workshops/index.md
     - Bee-tech wxO Bootcamp: workshops/bee-tech-wxo/index.md

@@ -1,4 +1,4 @@
-# Galicia
+# Cliente Bancario · Argentina
 
 <div class="asset-header">
 <div class="asset-meta">
@@ -11,7 +11,7 @@
 
 ## Descripción del caso
 
-**Banco Galicia** cuenta con miles de empleados que dependen del soporte IT interno para resolver incidentes tecnológicos en su operación diaria. El proceso tradicional de reporte — llamar al helpdesk, abrir un ticket manualmente en ServiceNow — genera demoras, errores de categorización y frustración.
+Un **banco líder en Argentina** cuenta con miles de empleados que dependen del soporte IT interno para resolver incidentes tecnológicos en su operación diaria. El proceso tradicional de reporte — llamar al helpdesk, abrir un ticket manualmente en ServiceNow — genera demoras, errores de categorización y frustración.
 
 La **solución**: un sistema multi-agente en **IBM watsonx Orchestrate** integrado directamente en **Microsoft Teams**, el canal de trabajo diario del banco. El sistema tiene dos capacidades principales:
 
@@ -28,7 +28,7 @@ La **solución**: un sistema multi-agente en **IBM watsonx Orchestrate** integra
 
 | Campo | Detalle |
 |---|---|
-| **Cliente** | Banco Galicia |
+| **Cliente** | Cliente Bancario — Argentina |
 | **Industria** | Banca / Servicios Financieros |
 | **País** | Argentina |
 | **Estado** | ✅ Activo |
@@ -54,7 +54,7 @@ Un agente orquestador en watsonx Orchestrate integrado en Teams que primero inte
 
 ```mermaid
 flowchart TD
-    USER([👤 Empleado de Banco Galicia])
+    USER([👤 Empleado del banco])
 
     subgraph CANAL ["Canal de acceso"]
         TEAMS["💬 Microsoft Teams\nintegrado con wxO"]
@@ -69,7 +69,7 @@ flowchart TD
         ES_CONN["🔗 Conexión Elastic Search\n(IBM Cloud hosted)\nÍndice de tickets y guías"]
     end
 
-    subgraph GALICIA_SISTEMAS ["🏢 Sistemas de Banco Galicia"]
+    subgraph GALICIA_SISTEMAS ["🏢 Sistemas del cliente"]
         SERVICENOW["🗂️ ServiceNow\nGestión de incidentes ITSM"]
     end
 
@@ -90,7 +90,7 @@ flowchart TD
 | Agente Consulta KB | IBM watsonx Orchestrate (native) | Busca en Elastic Search (IBM Cloud) guías y soluciones documentadas |
 | Agente Creación Tickets | IBM watsonx Orchestrate (native) | Crea incidentes en ServiceNow con datos estructurados |
 | Elastic Search (IBM Cloud) | Elastic Search — IBM Cloud hosted | Base de conocimiento de soporte: manuales, guías y soluciones por categoría |
-| ServiceNow | ServiceNow — Banco Galicia | ITSM del banco para gestión de incidentes |
+| ServiceNow | ServiceNow — cliente | ITSM del banco para gestión de incidentes |
 | Canal | Microsoft Teams | Interfaz conversacional integrada en el flujo de trabajo |
 
 ---
@@ -99,7 +99,7 @@ flowchart TD
 
     **Stack:** IBM watsonx Orchestrate (native agents) · Elastic Search (IBM Cloud) · ServiceNow API · Microsoft Teams
 
-    La solución usa **tres agentes nativos** (YAML) en watsonx Orchestrate. El agente de Elastic Search accede a la base de conocimiento mediante una **Knowledge Base connection** (`Elastic_Search_connection_0310mi`) que conecta con la instancia de Elastic Search hosteada en IBM Cloud — no en los sistemas de Galicia.
+    La solución usa **tres agentes nativos** (YAML) en watsonx Orchestrate. El agente de Elastic Search accede a la base de conocimiento mediante una **Knowledge Base connection** (`Elastic_Search_connection_0310mi`) que conecta con la instancia de Elastic Search hosteada en IBM Cloud — no en los sistemas del cliente.
 
     **Agentes incluidos:**
 

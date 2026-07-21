@@ -1,4 +1,4 @@
-# Telecom
+# Cliente Telco · Argentina
 
 <div class="asset-header">
 <div class="asset-meta">
@@ -11,7 +11,7 @@
 
 ## Descripción del caso
 
-**Telecom Argentina** es uno de los principales proveedores de servicios de telecomunicaciones del país, con millones de clientes en servicios móviles, banda ancha y TV. La operación genera enormes volúmenes de datos de red, facturación e infraestructura que necesitan gobierno, calidad y trazabilidad para tomar decisiones confiables.
+El cliente es uno de los principales proveedores de servicios de telecomunicaciones del país, con millones de clientes en servicios móviles, banda ancha y TV. La operación genera enormes volúmenes de datos de red, facturación e infraestructura que necesitan gobierno, calidad y trazabilidad para tomar decisiones confiables.
 
 Este MVP aborda **dos casos de uso estratégicos** identificados en el proceso de discovery:
 
@@ -28,7 +28,7 @@ Este MVP aborda **dos casos de uso estratégicos** identificados en el proceso d
 
 | Campo | Detalle |
 |---|---|
-| **Cliente** | Telecom Argentina |
+| **Cliente** | Cliente Telco — Argentina |
 | **Industria** | Telecomunicaciones |
 | **País** | Argentina |
 | **Estado** | 🔄 En proceso |
@@ -36,7 +36,7 @@ Este MVP aborda **dos casos de uso estratégicos** identificados en el proceso d
 | **Contacto CE** | Ignacio Ayerbe · Martina Pérez |
 
 ### El problema
-Telecom genera millones de eventos de red y facturación diariamente, pero la falta de gobierno de datos dificulta la confiabilidad de los KPIs, el monitoreo de SLOs/SLIs y la trazabilidad de los datos de infraestructura desde el origen hasta el reporte.
+El cliente genera millones de eventos de red y facturación diariamente, pero la falta de gobierno de datos dificulta la confiabilidad de los KPIs, el monitoreo de SLOs/SLIs y la trazabilidad de los datos de infraestructura desde el origen hasta el reporte.
 
 ### La solución IBM
 Un pipeline de datos en tiempo real (IBM Event Streams → IBM COS) con gobierno, calidad y enriquecimiento automático por IA en IBM watsonx.data intelligence — metadata, business terms, lineaje y checks de calidad sin intervención manual.
@@ -53,7 +53,7 @@ Un pipeline de datos en tiempo real (IBM Event Streams → IBM COS) con gobierno
 
 ```mermaid
 flowchart TD
-    subgraph FUENTES ["📡 Fuentes de datos Telecom"]
+    subgraph FUENTES ["📡 Fuentes de datos del cliente"]
         KAFKA_SRC["⚡ Eventos en tiempo real\nAlarmas FMC · Transacciones"]
         HIST["🗄️ Métricas de infraestructura\nKPIs · SLOs · SLIs · VMs"]
     end

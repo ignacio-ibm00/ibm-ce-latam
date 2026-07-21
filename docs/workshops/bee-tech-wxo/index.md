@@ -11,7 +11,7 @@
 
 ## Descripción del caso
 
-El **Bee-tech wxO Bootcamp** es un evento de capacitación en IA Agéntica realizado para **Las Marías** (fabricante de yerba mate Taragüí, Unión y La Merced), donde los participantes construyen un **sistema multiagente real** con IBM watsonx Orchestrate usando datos operacionales de la empresa.
+El **Bee-tech wxO Bootcamp** es un evento de capacitación en IA Agéntica realizado para la empresa "**Las Marías**"  (fabricante de yerba mate Taragüí, Unión y La Merced) simulado para realizar los laboratorios, donde los participantes construyen un **sistema multiagente real** con IBM watsonx Orchestrate usando datos operacionales de la empresa.
 
 Los participantes construyen 4 agentes de punta a punta: un agente de inventario en tiempo real conectado a Confluent Kafka vía MCP, un agente de análisis competitivo con web scraping, un agente catálogo visual con recomendación conversacional, y un orquestador comercial que coordina los tres anteriores. Todo accesible desde un **portal web propio** deployado en IBM Code Engine.
 

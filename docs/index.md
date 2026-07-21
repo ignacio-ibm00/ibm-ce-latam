@@ -11,9 +11,9 @@
 
 <div class="portfolio-grid">
 
-<a href="pilotos/agip/" class="portfolio-card">
+<a href="pilotos/organismo-tributario-caba/" class="portfolio-card">
   <div class="card-category">🏛️ Gobierno</div>
-  <div class="card-title">AGIP</div>
+  <div class="card-title">Organismo Tributario · CABA</div>
   <div class="card-description">Agente conversacional para consulta y gestión de obligaciones tributarias de la Ciudad de Buenos Aires (ABL, Patentes).</div>
   <div class="card-footer">
     <span class="badge badge-active">✅ Activo</span>
@@ -21,9 +21,9 @@
   </div>
 </a>
 
-<a href="pilotos/galicia/" class="portfolio-card">
+<a href="pilotos/cliente-bancario-arg/" class="portfolio-card">
   <div class="card-category">🏦 Banca</div>
-  <div class="card-title">Galicia</div>
+  <div class="card-title">Cliente Bancario · Argentina</div>
   <div class="card-description">Agente de soporte IT interno que permite a los empleados reportar incidentes y consultar tickets directamente desde Microsoft Teams.</div>
   <div class="card-footer">
     <span class="badge badge-active">✅ Activo</span>
@@ -31,9 +31,9 @@
   </div>
 </a>
 
-<a href="pilotos/swiss-medical/" class="portfolio-card">
+<a href="pilotos/cliente-healthcare-arg/" class="portfolio-card">
   <div class="card-category">🏥 Salud</div>
-  <div class="card-title">Swiss Medical</div>
+  <div class="card-title">Cliente Healthcare · Argentina</div>
   <div class="card-description">Agente de atención al afiliado por voz y texto (WhatsApp) para gestión de turnos, cobertura y cartilla médica.</div>
   <div class="card-footer">
     <span class="badge badge-active">✅ Activo</span>
@@ -41,9 +41,9 @@
   </div>
 </a>
 
-<a href="pilotos/gcba-tribunales/" class="portfolio-card">
+<a href="pilotos/organismo-judicial-caba/" class="portfolio-card">
   <div class="card-category">⚖️ Justicia</div>
-  <div class="card-title">GCBA Tribunales</div>
+  <div class="card-title">Organismo Judicial · CABA</div>
   <div class="card-description">Extracción automática de entidades de expedientes judiciales en PDF: Mistral (visión) + GPT (entidades) con visualización en página web.</div>
   <div class="card-footer">
     <span class="badge badge-active">✅ Activo</span>
@@ -51,9 +51,9 @@
   </div>
 </a>
 
-<a href="pilotos/telecom/" class="portfolio-card">
+<a href="pilotos/cliente-telco-arg/" class="portfolio-card">
   <div class="card-category">📡 Telco</div>
-  <div class="card-title">Telecom</div>
+  <div class="card-title">Cliente Telco · Argentina</div>
   <div class="card-description">MVP de gobierno y calidad de datos para monitoreo de KPIs móviles, alarmas FMC y linaje de infraestructura.</div>
   <div class="card-footer">
     <span class="badge badge-in-progress">🔄 En proceso</span>
@@ -72,7 +72,7 @@
 <a href="workshops/bee-tech-wxo/" class="portfolio-card">
   <div class="card-category">🎓 Bootcamp</div>
   <div class="card-title">Bee-tech wxO Bootcamp</div>
-  <div class="card-description">Bootcamp de agentes de IA para Las Marías con portal web deployado en IBM Code Engine.</div>
+  <div class="card-description">Bootcamp de agentes de IA con portal web deployado en IBM Code Engine.</div>
   <div class="card-footer">
     <span class="badge badge-completed">✔️ Completado</span>
     <span>watsonx Orchestrate</span>

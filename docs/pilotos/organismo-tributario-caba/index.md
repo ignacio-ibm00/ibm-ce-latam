@@ -1,4 +1,4 @@
-# AGIP
+# Organismo Tributario · CABA
 
 <div class="asset-header">
 <div class="asset-meta">
@@ -11,7 +11,7 @@
 
 ## Descripción del caso
 
-**AGIP** (Agencia de Ingresos Públicos de la Ciudad de Buenos Aires) es el organismo recaudador de CABA. Gestiona los principales tributos municipales que afectan a millones de contribuyentes:
+El **organismo tributario de la Ciudad de Buenos Aires** es el ente recaudador de CABA. Gestiona los principales tributos municipales que afectan a millones de contribuyentes:
 
 - **ABL** (Alumbrado, Barrido y Limpieza): tributo bimestral que se paga por cada inmueble registrado bajo una *partida* ABL. Es el impuesto que financia los servicios de limpieza, iluminación y barrido de las calles de la Ciudad.
 - **Inmobiliario**: impuesto sobre la propiedad inmueble (terrenos y edificios), también identificado por número de partida.
@@ -31,7 +31,7 @@ La **solución**: un sistema de agentes conversacionales construido sobre **IBM 
 
 | Campo | Detalle |
 |---|---|
-| **Cliente** | AGIP — Agencia de Ingresos Públicos CABA |
+| **Cliente** | Organismo Tributario — Ciudad de Buenos Aires |
 | **Industria** | Gobierno / Sector Público |
 | **País** | Argentina |
 | **Estado** | ✅ Activo |
@@ -48,7 +48,7 @@ Tres agentes especializados en IBM watsonx Orchestrate — orquestador, operacio
 
 - ✅ **Atención 24/7** sin costo adicional de recursos humanos
 - ✅ **Flujo completo de autogestión** — desde la consulta hasta el pago en una sola conversación
-- ✅ **Integración nativa** con la API de AGIP sin reescribir sistemas legados
+- ✅ **Integración nativa** con la API del organismo sin reescribir sistemas legados
 - ✅ **Múltiples medios de pago** — tarjeta de débito/crédito, billeteras virtuales, Buepp (con 20% descuento), plan de facilidades
 
 ---
@@ -60,7 +60,7 @@ flowchart TD
     USER([👤 Contribuyente CABA])
 
     subgraph CANAL ["Canal de acceso"]
-        CHAT["💬 Chat Web\nEmbebido en portal AGIP"]
+        CHAT["💬 Chat Web\nEmbebido en portal del organismo"]
     end
 
     subgraph IBM_WXO ["🧠 IBM watsonx Orchestrate"]
@@ -68,10 +68,10 @@ flowchart TD
         ORCH["🤖 Agente Orquestador\nPunto de entrada · clasifica intención"]
         OPS["⚙️ Agente de Operaciones\nLogin · Consulta deuda · Pagos · Email"]
         FAQ["📚 Agente de Consultas Frecuentes\nPreguntas informativas sobre tributos"]
-        KB["📄 Knowledge Base\nABL/Inmobiliario · Patentes · Trámites AGIP"]
+        KB["📄 Knowledge Base\nABL/Inmobiliario · Patentes · Trámites del organismo"]
     end
 
-    subgraph API ["🔌 API Mock de AGIP\n(Node.js — IBM Code Engine)"]
+    subgraph API ["🔌 API Mock del Organismo\n(Node.js — IBM Code Engine)"]
         AUTH["🔐 POST /auth/login\nAutenticación por CUIL"]
         DEUDA_ABL["🔍 GET /consulta-deuda/abl/:partida\nDeuda ABL e Inmobiliario"]
         DEUDA_PAT["🚗 GET /consulta-deuda/patente/:dominio\nDeuda de Patentes"]
@@ -97,9 +97,9 @@ flowchart TD
 |---|---|---|
 | Agente Orquestador | IBM watsonx Orchestrate | Punto de entrada único, detecta intención y delega |
 | Agente de Operaciones | IBM watsonx Orchestrate | Ejecuta el flujo transaccional completo |
-| Agente de Consultas Frecuentes | IBM watsonx Orchestrate | Responde preguntas informativas sobre tributos AGIP |
-| Knowledge Base | watsonx Orchestrate (KB) | Documentos: ABL/Inmobiliario, Patentes, procedimientos AGIP |
-| API Mock AGIP | Node.js — IBM Code Engine | Simula la API de AGIP con todos los endpoints del flujo real |
+| Agente de Consultas Frecuentes | IBM watsonx Orchestrate | Responde preguntas informativas sobre tributos del organismo |
+| Knowledge Base | watsonx Orchestrate (KB) | Documentos: ABL/Inmobiliario, Patentes, procedimientos del organismo |
+| API Mock del Organismo | Node.js — IBM Code Engine | Simula la API del organismo con todos los endpoints del flujo real |
 
 ---
 
